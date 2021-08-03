@@ -1,0 +1,5 @@
+byte-dance:
+  open:
+    key: test
+    secret: test
+    enable-http-logging: false
