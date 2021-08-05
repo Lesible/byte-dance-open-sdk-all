@@ -11,11 +11,11 @@ import com.sumwhy.bytedance.open.model.resp.oauth.ByteDanceOauthResp
 class OauthClient(private val oauthApi: OauthApi, private val openCredentials: OpenCredentials) {
 
     /**
-     *  刷新 accessToken
+     * 刷新 accessToken
      *
-     *  @param refreshToken refreshToken
-     *  @param clientKey clientKey, 默认取配置文件配置
-     *  @return ByteDanceOauthResp 字节开放平台授权结果 nullable
+     * @param clientKey clientKey, 默认取配置文件配置
+     * @param refreshToken refreshToken
+     * @return ByteDanceOauthResp 字节开放平台授权结果 nullable
      */
     @JvmOverloads
     fun refreshToken(clientKey: String = openCredentials.key, refreshToken: String): ByteDanceOauthResp? {
@@ -24,6 +24,22 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
             "client_key" to clientKey,
             "refresh_token" to refreshToken)
         val execute = oauthApi.refreshToken(queryMap).execute()
+        return if (execute.isSuccessful) execute.body() else null
+    }
+
+    /**
+     * 刷新 refreshToken
+     *
+     * @param clientKey clientKey, 默认取配置文件配置
+     * @param refreshToken refreshToken
+     * @return ByteDanceOauthResp 字节开放平台授权结果 nullable
+     */
+    @JvmOverloads
+    fun renewRefreshToken(clientKey: String = openCredentials.key, refreshToken: String): ByteDanceOauthResp? {
+        val queryMap = mutableMapOf(
+            "client_key" to clientKey,
+            "refresh_token" to refreshToken)
+        val execute = oauthApi.renewRefreshToken(queryMap).execute()
         return if (execute.isSuccessful) execute.body() else null
     }
 

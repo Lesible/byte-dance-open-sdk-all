@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.*
 import com.sumwhy.bytedance.open.common.OpenCredentials
 import com.sumwhy.bytedance.open.common.metadata.ByteDanceOpenSdkClientProperties
 import okhttp3.ConnectionPool
+import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.springframework.context.annotation.Bean
@@ -31,7 +32,11 @@ class OpenApiFactory(private val clientProp: ByteDanceOpenSdkClientProperties) {
         val pool = ConnectionPool(poolConfig.connectionMaxIdle,
             poolConfig.keepAliveDuration.seconds, TimeUnit.SECONDS)
         // 构建 okHttp 属性
-        val okHttpBuilder = OkHttpClient.Builder().connectTimeout(okHttpProp.connectTimeout)
+        val connectionSpecs = listOf(
+            ConnectionSpec.MODERN_TLS,
+            ConnectionSpec.COMPATIBLE_TLS)
+        val okHttpBuilder = OkHttpClient.Builder().connectionSpecs(connectionSpecs)
+            .connectTimeout(okHttpProp.connectTimeout)
             .readTimeout(okHttpProp.readTimeout).writeTimeout(okHttpProp.writeTimeout)
             .callTimeout(okHttpProp.callTimeout).connectionPool(pool)
             .retryOnConnectionFailure(okHttpProp.retryOnConnectionFailure)
