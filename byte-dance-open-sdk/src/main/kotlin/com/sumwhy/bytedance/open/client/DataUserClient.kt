@@ -2,6 +2,8 @@ package com.sumwhy.bytedance.open.client
 
 import com.sumwhy.bytedance.open.api.DataApi
 import com.sumwhy.bytedance.open.model.req.data.DataBaseParam
+import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
+import com.sumwhy.bytedance.open.model.resp.data.user.*
 
 /**
  * <p> 用户数据请求客户端 </p>
@@ -11,34 +13,34 @@ import com.sumwhy.bytedance.open.model.req.data.DataBaseParam
  */
 class DataUserClient(private val dataApi: DataApi) {
 
-    fun getUserItem(dataBaseParam: DataBaseParam) {
+    fun getUserItem(dataBaseParam: DataBaseParam): ByteDanceResp<UserDataResult<UserItem>>? {
         val userItem = dataApi.getUserItem(dataBaseParam.toParamMap()).execute()
-        println(if (userItem.isSuccessful) userItem.body() else null)
+        return if (userItem.isSuccessful) userItem.body() else null
     }
 
-    fun getUserFans(dataBaseParam: DataBaseParam) {
+    fun getUserFans(dataBaseParam: DataBaseParam): ByteDanceResp<UserDataResult<UserFan>>? {
         val userFans = dataApi.getUserFans(dataBaseParam.toParamMap()).execute()
-        println(if (userFans.isSuccessful) userFans.body() else null)
+        return if (userFans.isSuccessful) userFans.body() else null
     }
 
-    fun getUserLike(dataBaseParam: DataBaseParam) {
+    fun getUserLike(dataBaseParam: DataBaseParam): ByteDanceResp<UserDataResult<UserLike>>? {
         val userLike = dataApi.getUserLike(dataBaseParam.toParamMap()).execute()
-        println(if (userLike.isSuccessful) userLike.body() else null)
+        return if (userLike.isSuccessful) userLike.body() else null
     }
 
-    fun getUserComment(dataBaseParam: DataBaseParam) {
+    fun getUserComment(dataBaseParam: DataBaseParam): ByteDanceResp<UserDataResult<UserComment>>? {
         val userComment = dataApi.getUserComment(dataBaseParam.toParamMap()).execute()
-        println(if (userComment.isSuccessful) userComment.body() else null)
+        return if (userComment.isSuccessful) userComment.body() else null
     }
 
-    fun getUserShare(dataBaseParam: DataBaseParam) {
+    fun getUserShare(dataBaseParam: DataBaseParam): ByteDanceResp<UserDataResult<UserShare>>? {
         val userShare = dataApi.getUserShare(dataBaseParam.toParamMap()).execute()
-        println(if (userShare.isSuccessful) userShare.body() else null)
+        return if (userShare.isSuccessful) userShare.body() else null
     }
 
-    fun getUserProfile(dataBaseParam: DataBaseParam) {
+    fun getUserProfile(dataBaseParam: DataBaseParam): ByteDanceResp<UserDataResult<UserProfile>>? {
         val userProfile = dataApi.getUserProfile(dataBaseParam.toParamMap()).execute()
-        println(if (userProfile.isSuccessful) userProfile.body() else null)
+        return if (userProfile.isSuccessful) userProfile.body() else null
     }
 
 

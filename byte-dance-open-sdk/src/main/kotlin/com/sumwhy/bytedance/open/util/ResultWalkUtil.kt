@@ -1,7 +1,7 @@
 package com.sumwhy.bytedance.open.util
 
 import com.sumwhy.bytedance.open.client.VideoClient
-import com.sumwhy.bytedance.open.model.req.video.ListVideoParam
+import com.sumwhy.bytedance.open.model.req.UniversalListParam
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
 import com.sumwhy.bytedance.open.model.resp.video.ListVideoResult
 import org.slf4j.Logger
@@ -54,15 +54,14 @@ class ResultWalkUtil {
      */
     @JvmOverloads
     fun walkVideoList(
-        initParam: ListVideoParam, resultConsumer: (ByteDanceResp<ListVideoResult>?) -> Unit,
+        initParam: UniversalListParam, resultConsumer: (ByteDanceResp<ListVideoResult>?) -> Unit,
         breakPredicate: (ByteDanceResp<ListVideoResult>?) -> Boolean =
             { it == null || !it.data.isSuccessful() || it.data.hasMore?.not() ?: true },
     ) {
-        walk<ListVideoParam, ByteDanceResp<ListVideoResult>?>({ videoClient.listVideo(it) },
+        walk<UniversalListParam, ByteDanceResp<ListVideoResult>?>({ videoClient.listVideo(it) },
             resultConsumer, breakPredicate, initParam,
             { initParam.clone(it?.data?.cursor ?: throw RuntimeException("impossible")) })
     }
-
 
     companion object {
         private val log: Logger = LoggerFactory.getLogger(this::class.java)

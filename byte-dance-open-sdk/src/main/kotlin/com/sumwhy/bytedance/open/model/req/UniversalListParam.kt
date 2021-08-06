@@ -1,11 +1,11 @@
-package com.sumwhy.bytedance.open.model.req.video
+package com.sumwhy.bytedance.open.model.req
 
 /**
  * <p>  </p>
  * <p> create 2021-08-02 11:46 by lesible</p>
  * @author 何嘉豪
  */
-class ListVideoParam private constructor(builder: Builder) {
+class UniversalListParam private constructor(builder: Builder) {
 
     private val openId = builder.openId
     private val accessToken = builder.accessToken
@@ -38,7 +38,7 @@ class ListVideoParam private constructor(builder: Builder) {
             return this
         }
 
-        fun build() = ListVideoParam(this)
+        fun build() = UniversalListParam(this)
     }
 
 }
