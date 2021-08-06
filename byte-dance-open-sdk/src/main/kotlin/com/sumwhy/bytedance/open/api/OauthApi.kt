@@ -12,8 +12,8 @@ import retrofit2.http.QueryMap
 interface OauthApi {
 
     @GET("oauth/refresh_token/")
-    fun refreshToken(@QueryMap map: Map<String, String>): Call<ByteDanceOauthResp>
+    fun refreshToken(@QueryMap queryMap: Map<String, String>): Call<ByteDanceOauthResp>
 
     @GET("oauth/renew_refresh_token/")
-    fun renewRefreshToken(@QueryMap map: Map<String, String>): Call<ByteDanceOauthResp>
+    fun renewRefreshToken(@QueryMap queryMap: Map<String, String>): Call<ByteDanceOauthResp>
 }

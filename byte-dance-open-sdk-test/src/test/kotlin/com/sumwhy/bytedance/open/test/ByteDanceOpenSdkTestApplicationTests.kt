@@ -1,7 +1,9 @@
 package com.sumwhy.bytedance.open.test
 
+import com.sumwhy.bytedance.open.client.DataUserClient
 import com.sumwhy.bytedance.open.client.OauthClient
 import com.sumwhy.bytedance.open.client.VideoClient
+import com.sumwhy.bytedance.open.model.req.data.DataBaseParam
 import com.sumwhy.bytedance.open.model.req.video.ListVideoParam
 import com.sumwhy.bytedance.open.util.ResultWalkUtil
 import org.junit.jupiter.api.Test
@@ -18,6 +20,9 @@ class ByteDanceOpenSdkTestApplicationTests {
 
     @Resource
     lateinit var videoClient: VideoClient
+
+    @Resource
+    lateinit var dataUserClient: DataUserClient
 
     @Resource
     lateinit var walkUtil: ResultWalkUtil
@@ -49,6 +54,18 @@ class ByteDanceOpenSdkTestApplicationTests {
         val initParam = ListVideoParam.builder("160d7dfc-edc4-4a28-a755-0e4522a75788",
             "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ", 10).build()
         walkUtil.walkVideoList(initParam, { log.info("{}", it) })
+    }
+
+    @Test
+    fun dataUser() {
+        val dataBaseParam = DataBaseParam("160d7dfc-edc4-4a28-a755-0e4522a75788",
+            "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ", 5)
+        dataUserClient.getUserComment(dataBaseParam)
+        dataUserClient.getUserFans(dataBaseParam)
+        dataUserClient.getUserItem(dataBaseParam)
+        dataUserClient.getUserLike(dataBaseParam)
+        dataUserClient.getUserProfile(dataBaseParam)
+        dataUserClient.getUserShare(dataBaseParam)
     }
 
     companion object {

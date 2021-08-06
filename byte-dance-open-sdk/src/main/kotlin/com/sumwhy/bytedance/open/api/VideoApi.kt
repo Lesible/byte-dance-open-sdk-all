@@ -14,6 +14,6 @@ import retrofit2.http.QueryMap
 interface VideoApi {
 
     @GET("video/list/")
-    fun listVideo(@QueryMap map: Map<String, String>): Call<ByteDanceResp<ListVideoResult>>
+    fun listVideo(@QueryMap queryMap: Map<String, String>): Call<ByteDanceResp<ListVideoResult>>
 
 }
