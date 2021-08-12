@@ -4,10 +4,7 @@ import com.sumwhy.bytedance.open.api.DataApi
 import com.sumwhy.bytedance.open.api.OauthApi
 import com.sumwhy.bytedance.open.api.UserApi
 import com.sumwhy.bytedance.open.api.VideoApi
-import com.sumwhy.bytedance.open.client.DataUserClient
-import com.sumwhy.bytedance.open.client.OauthClient
-import com.sumwhy.bytedance.open.client.UserClient
-import com.sumwhy.bytedance.open.client.VideoClient
+import com.sumwhy.bytedance.open.client.*
 import com.sumwhy.bytedance.open.common.OpenCredentials
 import com.sumwhy.bytedance.open.common.metadata.ByteDanceOpenSdkClientProperties
 import com.sumwhy.bytedance.open.config.OpenApiFactory
@@ -43,5 +40,9 @@ class ByteDanceOpenSdkAutoConfiguration {
     @Bean
     fun userDataClient(openApiFactory: OpenApiFactory) =
         DataUserClient(openApiFactory.generateApi(DataApi::class.java))
+
+    @Bean
+    fun videoDataClient(openApiFactory: OpenApiFactory) =
+        DataVideoClient(openApiFactory.generateApi(DataApi::class.java))
 
 }

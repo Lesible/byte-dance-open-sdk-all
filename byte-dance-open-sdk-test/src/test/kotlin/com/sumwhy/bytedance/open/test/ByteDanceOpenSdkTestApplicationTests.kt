@@ -1,11 +1,9 @@
 package com.sumwhy.bytedance.open.test
 
-import com.sumwhy.bytedance.open.client.DataUserClient
-import com.sumwhy.bytedance.open.client.OauthClient
-import com.sumwhy.bytedance.open.client.UserClient
-import com.sumwhy.bytedance.open.client.VideoClient
+import com.sumwhy.bytedance.open.client.*
 import com.sumwhy.bytedance.open.model.req.UniversalListParam
-import com.sumwhy.bytedance.open.model.req.data.DataBaseParam
+import com.sumwhy.bytedance.open.model.req.data.external.UserDataParam
+import com.sumwhy.bytedance.open.model.req.data.external.VideoDataParam
 import com.sumwhy.bytedance.open.util.ResultWalkUtil
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -24,6 +22,9 @@ class ByteDanceOpenSdkTestApplicationTests {
 
     @Resource
     lateinit var dataUserClient: DataUserClient
+
+    @Resource
+    lateinit var dataVideoClient: DataVideoClient
 
     @Resource
     lateinit var walkUtil: ResultWalkUtil
@@ -70,14 +71,30 @@ class ByteDanceOpenSdkTestApplicationTests {
 
     @Test
     fun dataUser() {
-        val dataBaseParam = DataBaseParam("160d7dfc-edc4-4a28-a755-0e4522a75788",
-            "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ", 5)
-        dataUserClient.getUserComment(dataBaseParam)
-        dataUserClient.getUserFans(dataBaseParam)
-        dataUserClient.getUserItem(dataBaseParam)
-        dataUserClient.getUserLike(dataBaseParam)
-        dataUserClient.getUserProfile(dataBaseParam)
-        dataUserClient.getUserShare(dataBaseParam)
+        val dataBaseParam = UserDataParam(5,
+            "160d7dfc-edc4-4a28-a755-0e4522a75788", "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ")
+        println(dataUserClient.getUserComment(dataBaseParam))
+        println(dataUserClient.getUserFans(dataBaseParam))
+        println(dataUserClient.getUserItem(dataBaseParam))
+        println(dataUserClient.getUserLike(dataBaseParam))
+        println(dataUserClient.getUserProfile(dataBaseParam))
+        println(dataUserClient.getUserShare(dataBaseParam))
+    }
+
+    @Test
+    fun dataVideo() {
+        val videoDataParam =
+            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783G3hOfmEO5J5oAqvLlcXZvL/60zdRmYqig357zEB6oj05LN4nnolu+fk5c0bgA==",
+                openId = "17d0d9e2-07bf-4d98-9a38-33e26afef8f8",
+                accessToken = "act.4f34f23ef1ef98fa9f3d91dead6f0b5ab7P6gmkbOFsRQyz4dNk8LKnqSm6E")
+        val itemBase = dataVideoClient.getItemBase(videoDataParam)
+        log.info("itemBase:{}", itemBase)
+        val videoDataParamDate =
+            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783G3hOfmEO5J5oAqvLlcXZvL/60zdRmYqig357zEB6oj05LN4nnolu+fk5c0bgA==",
+                15, "17d0d9e2-07bf-4d98-9a38-33e26afef8f8",
+                "act.4f34f23ef1ef98fa9f3d91dead6f0b5ab7P6gmkbOFsRQyz4dNk8LKnqSm6E")
+        val itemPlay = dataVideoClient.getItemPlay(videoDataParamDate)
+        log.info("itemPlay:{}", itemPlay)
     }
 
     companion object {

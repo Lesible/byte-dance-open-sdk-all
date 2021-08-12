@@ -32,8 +32,8 @@ data class RefreshTokenResult(
      * 过期时间，单位（秒）
      */
     val expiresIn: Int?,
-    val captcha: String,
-    val descUrl: String,
+    val captcha: String?,
+    val descUrl: String?,
     override val description: String,
     override val errorCode: Int,
 ) : BaseData(errorCode, description)

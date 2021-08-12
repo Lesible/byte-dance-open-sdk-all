@@ -31,5 +31,9 @@ interface DataApi {
     @GET("data/external/user/profile/")
     fun getUserProfile(@QueryMap queryMap: Map<String, String>): Call<ByteDanceResp<UserDataResult<UserProfile>>>
 
+    @GET("data/external/item/base/")
+    fun getItemBase(@QueryMap queryMap: Map<String, String>): Call<String>
 
+    @GET("data/external/item/play/")
+    fun getItemPlay(@QueryMap queryMap: Map<String, String>): Call<String>
 }

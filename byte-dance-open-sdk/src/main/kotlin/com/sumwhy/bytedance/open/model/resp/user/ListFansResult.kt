@@ -12,17 +12,22 @@ data class ListFansResult(
     /**
      * 用于下一页请求的cursor
      */
-    val cursor: Long? = null,
+    val cursor: Long?,
 
     /**
      * 是否还有数据
      */
-    val hasMore: Boolean? = null,
+    val hasMore: Boolean?,
+
+    /**
+     * 粉丝总数
+     */
+    val total: Long?,
 
     /**
      * 由于置顶的原因, list长度可能比count指定的数量多一些或少一些。
      */
-    val list: List<FansInfo>? = null,
+    val list: List<FansInfo>?,
 
     /**
      * 错误码

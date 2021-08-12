@@ -12,17 +12,17 @@ data class ListVideoResult(
     /**
      * 用于下一页请求的cursor
      */
-    val cursor: Long? = null,
+    val cursor: Long?,
 
     /**
      * 是否还有数据
      */
-    val hasMore: Boolean? = null,
+    val hasMore: Boolean?,
 
     /**
      * 由于置顶的原因, list长度可能比count指定的数量多一些或少一些。
      */
-    val list: List<VideoInfo>? = null,
+    val list: List<VideoInfo>?,
 
     /**
      * 错误码
