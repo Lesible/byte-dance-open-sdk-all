@@ -84,15 +84,15 @@ class ByteDanceOpenSdkTestApplicationTests {
     @Test
     fun dataVideo() {
         val videoDataParam =
-            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783G3hOfmEO5J5oAqvLlcXZvL/60zdRmYqig357zEB6oj05LN4nnolu+fk5c0bgA==",
-                openId = "17d0d9e2-07bf-4d98-9a38-33e26afef8f8",
-                accessToken = "act.4f34f23ef1ef98fa9f3d91dead6f0b5ab7P6gmkbOFsRQyz4dNk8LKnqSm6E")
+            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783GztNPCFMpxyrQmuLlAQbvf960zdRmYqig357zEBNxaM7PuU+F5bEIfWd7Kb9Q==",
+                openId = "a7701ce7-fc87-4859-8af0-2f691107bfb2",
+                accessToken = "act.aecdaa4d437806d57ea1b1eda16f0a10WaFe48viEi71n7QBuvRByTdNL0eE")
         val itemBase = dataVideoClient.getItemBase(videoDataParam)
         log.info("itemBase:{}", itemBase)
         val videoDataParamDate =
-            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783G3hOfmEO5J5oAqvLlcXZvL/60zdRmYqig357zEB6oj05LN4nnolu+fk5c0bgA==",
-                15, "17d0d9e2-07bf-4d98-9a38-33e26afef8f8",
-                "act.4f34f23ef1ef98fa9f3d91dead6f0b5ab7P6gmkbOFsRQyz4dNk8LKnqSm6E")
+            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783GztNPCFMpxyrQmuLlAQbvf960zdRmYqig357zEBNxaM7PuU+F5bEIfWd7Kb9Q==",
+                15, "a7701ce7-fc87-4859-8af0-2f691107bfb2",
+                "act.aecdaa4d437806d57ea1b1eda16f0a10WaFe48viEi71n7QBuvRByTdNL0eE")
         val itemPlay = dataVideoClient.getItemPlay(videoDataParamDate)
         log.info("itemPlay:{}", itemPlay)
     }
