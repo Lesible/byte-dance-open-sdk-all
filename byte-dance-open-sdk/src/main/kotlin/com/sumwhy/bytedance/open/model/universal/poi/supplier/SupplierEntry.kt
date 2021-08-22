@@ -31,7 +31,7 @@ class SupplierEntry {
             Builder(entryMiniApp, entryType)
     }
 
-    class Builder(
+    class Builder internal constructor(
         val entryMiniApp: EntryMiniApp,
         val entryType: EntryTypeEnum
     ) {

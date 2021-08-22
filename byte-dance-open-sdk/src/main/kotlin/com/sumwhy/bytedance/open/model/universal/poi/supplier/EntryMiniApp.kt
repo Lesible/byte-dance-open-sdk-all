@@ -41,7 +41,7 @@ class EntryMiniApp {
         fun builder(params: String, path: String, appId: String) = Builder(params, path, appId)
     }
 
-    class Builder(
+    class Builder internal constructor(
         val params: String,
         val path: String,
         val appId: String

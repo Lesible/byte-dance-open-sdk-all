@@ -42,7 +42,7 @@ class HotelServiceFacility {
 
     }
 
-    class Builder(
+    class Builder internal constructor(
         val code: Int
     ) {
         var name: String? = null
@@ -106,7 +106,7 @@ class HotelPolicy {
 
     }
 
-    class Builder {
+    class Builder internal constructor() {
         var breakfast: Breakfast? = null
         var checkInTime: String? = null
         var checkOutTime: String? = null
@@ -176,7 +176,7 @@ class Breakfast {
 
     }
 
-    class Builder(
+    class Builder internal constructor(
         val type: BreakfastTypeEnum
     ) {
 
@@ -265,7 +265,7 @@ class ScenicTips {
 
     }
 
-    class Builder {
+    class Builder internal constructor() {
         var openTime: String? = null
         var openTimeExt: List<ExtContent>? = null
         var preferentialPolicyExt: List<ExtContent>? = null

@@ -19,7 +19,7 @@ interface LifeOpenApi {
      * 商铺同步
      */
     @POST("poi/supplier/sync")
-    fun supplierSync(
+    fun syncSupplier(
         @Query("access_token") accessToken: String,
         @Body syncSupplierReq: SyncSupplierReq,
     ): Call<ByteDanceResp<SyncSupplierResult>>

@@ -38,7 +38,7 @@ class SupplierService {
             Builder(enable, entry, serviceType)
     }
 
-    class Builder(
+    class Builder internal constructor(
         val enable: OnlineStatusEnum,
         val entry: SupplierEntry,
         val serviceType: ServiceTypeEnum

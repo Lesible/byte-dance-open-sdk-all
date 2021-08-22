@@ -31,7 +31,7 @@ class Recommend {
 
     }
 
-    class Builder(
+    class Builder internal constructor(
         var imageUrl: String,
         var title: String
     ) {

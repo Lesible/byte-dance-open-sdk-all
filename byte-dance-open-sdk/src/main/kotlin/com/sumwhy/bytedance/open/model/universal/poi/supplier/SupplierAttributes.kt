@@ -58,7 +58,14 @@ class SupplierAttributes {
         this.scenicTips = build.scenicTips
     }
 
-    class Builder {
+    companion object {
+
+        @JvmStatic
+        fun builder() = Builder()
+
+    }
+
+    class Builder internal constructor() {
 
         var hotelService: List<HotelServiceFacility>? = null
 

@@ -2,4 +2,4 @@ byte-dance:
   open:
     key: test
     secret: test
-    enable-http-logging: false
+    enable-http-logging: true
