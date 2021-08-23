@@ -11,9 +11,15 @@ import retrofit2.http.QueryMap
  */
 interface OauthApi {
 
+    /**
+     * 刷新 accessToken
+     */
     @GET("oauth/refresh_token/")
     fun refreshToken(@QueryMap queryMap: Map<String, String>): Call<ByteDanceOauthResp>
 
+    /**
+     * 刷新 refreshToken
+     */
     @GET("oauth/renew_refresh_token/")
     fun renewRefreshToken(@QueryMap queryMap: Map<String, String>): Call<ByteDanceOauthResp>
 }

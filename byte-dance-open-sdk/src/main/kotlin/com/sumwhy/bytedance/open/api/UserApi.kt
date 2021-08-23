@@ -13,6 +13,9 @@ import retrofit2.http.QueryMap
  */
 interface UserApi {
 
+    /**
+     * 查询用户粉丝列表
+     */
     @GET("fans/list/")
     fun listFans(@QueryMap queryMap: Map<String, String>): Call<ByteDanceResp<ListFansResult>>
 

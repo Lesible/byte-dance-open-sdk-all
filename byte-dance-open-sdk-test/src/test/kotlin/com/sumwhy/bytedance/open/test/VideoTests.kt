@@ -1,16 +1,12 @@
 package com.sumwhy.bytedance.open.test
 
-import com.sumwhy.bytedance.open.client.*
+import com.sumwhy.bytedance.open.client.DataUserClient
+import com.sumwhy.bytedance.open.client.DataVideoClient
+import com.sumwhy.bytedance.open.client.UserClient
+import com.sumwhy.bytedance.open.client.VideoClient
 import com.sumwhy.bytedance.open.model.req.UniversalListParam
 import com.sumwhy.bytedance.open.model.req.data.external.UserDataParam
 import com.sumwhy.bytedance.open.model.req.data.external.VideoDataParam
-import com.sumwhy.bytedance.open.model.req.poi.supplier.SyncSupplierReq.Companion.builder
-import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
-import com.sumwhy.bytedance.open.model.resp.poi.supplier.SyncSupplierResult
-import com.sumwhy.bytedance.open.model.universal.poi.supplier.HotelServiceFacility
-import com.sumwhy.bytedance.open.model.universal.poi.supplier.SupplierAttributes
-import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.OnlineStatusEnum
-import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.SupplierTypeEnum
 import com.sumwhy.bytedance.open.util.ResultWalkUtil
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -19,13 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import javax.annotation.Resource
 
 @SpringBootTest
-class ByteDanceOpenSdkTestApplicationTests {
-
-    @Resource
-    lateinit var poiSupplierClient: PoiSupplierClient
-
-    @Resource
-    lateinit var oauthClient: OauthClient
+class VideoTests {
 
     @Resource
     lateinit var videoClient: VideoClient
@@ -41,20 +31,6 @@ class ByteDanceOpenSdkTestApplicationTests {
 
     @Resource
     lateinit var userClient: UserClient
-
-    @Test
-    fun refreshToken() {
-        val refreshToken =
-            oauthClient.refreshToken(refreshToken = "rft.575c7fb63f2cbf3c5e45848079052176vffXa2V1Sunnyz34W3MvbI1bfIFl")
-        log.info("refreshToken:{}", refreshToken)
-    }
-
-    @Test
-    fun renewRefreshToken() {
-        val refreshToken =
-            oauthClient.renewRefreshToken(refreshToken = "rft.575c7fb63f2cbf3c5e45848079052176vffXa2V1Sunnyz34W3MvbI1bfIFl")
-        log.info("refreshToken:{}", refreshToken)
-    }
 
     @Test
     fun listVideo() {
@@ -123,21 +99,4 @@ class ByteDanceOpenSdkTestApplicationTests {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
     }
 
-    @Test
-    fun syncPoiSupplier() {
-        val build = builder(
-            "test", OnlineStatusEnum.ONLINE_STATUS,
-            SupplierTypeEnum.CAR, SupplierAttributes.builder()
-                .hotelFacility(
-                    listOf(
-                        HotelServiceFacility.builder(1).name("test1").build(),
-                        HotelServiceFacility.builder(2).name("test2").build()
-                    )
-                )
-                .build(),
-            "test", "test"
-        ).build()
-        val test: ByteDanceResp<SyncSupplierResult>? = poiSupplierClient.syncSupplier("test", build)
-        log.info("test: {}", test)
-    }
 }

@@ -10,11 +10,21 @@ import com.sumwhy.bytedance.open.model.req.data.external.VideoDataParam
  */
 class DataVideoClient(private val dataApi: DataApi) {
 
+    /**
+     * 获取指定视频的基本信息
+     *
+     * @param videoDataParam 视频数据查询参数
+     */
     fun getItemBase(videoDataParam: VideoDataParam): String? {
         val videoItemBase = dataApi.getItemBase(videoDataParam.toParamMap()).execute()
         return if (videoItemBase.isSuccessful) videoItemBase.body() else null
     }
 
+    /**
+     * 获取指定视频的播放数据
+     *
+     * @param videoDataParam 视频数据查询参数
+     */
     fun getItemPlay(videoDataParam: VideoDataParam): String? {
         val videoItemPlay = dataApi.getItemPlay(videoDataParam.toParamMap()).execute()
         return if (videoItemPlay.isSuccessful) videoItemPlay.body() else null
