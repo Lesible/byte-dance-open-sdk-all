@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
  * <p> create by lesible at 2021-8-21 16:45:12 </p>
  * @author 何嘉豪
  */
-@JsonSerialize(using = NodeTypeEnum.NodeTypeEnumSerializer::class)
-@JsonDeserialize(using = NodeTypeEnum.NodeTypeEnumDeserializer::class)
+@JsonSerialize(using = NodeTypeEnum.Serializer::class)
+@JsonDeserialize(using = NodeTypeEnum.Deserializer::class)
 enum class NodeTypeEnum(private val nodeType: Int) {
 
     /**
@@ -36,18 +36,8 @@ enum class NodeTypeEnum(private val nodeType: Int) {
 
     }
 
-    class NodeTypeEnumDeserializer :
-        StdDeserializer<NodeTypeEnum?>(NodeTypeEnum::class.java) {
+    class Serializer : StdSerializer<NodeTypeEnum>(NodeTypeEnum::class.java) {
 
-        override fun deserialize(p: JsonParser, ctx: DeserializationContext): NodeTypeEnum? {
-            val node = p.codec.readTree<JsonNode>(p)
-            val nodeType = node.asInt()
-            return getEnumByInnerValue(nodeType)
-        }
-    }
-
-    class NodeTypeEnumSerializer :
-        StdSerializer<NodeTypeEnum>(NodeTypeEnum::class.java) {
         override fun serialize(value: NodeTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
             if (value != null) {
                 gen.writeNumber(value.nodeType)
@@ -55,4 +45,15 @@ enum class NodeTypeEnum(private val nodeType: Int) {
         }
 
     }
+
+    class Deserializer : StdDeserializer<NodeTypeEnum?>(NodeTypeEnum::class.java) {
+
+        override fun deserialize(p: JsonParser, ctx: DeserializationContext): NodeTypeEnum? {
+            val node = p.codec.readTree<JsonNode>(p)
+            val nodeType = node.asInt()
+            return getEnumByInnerValue(nodeType)
+        }
+
+    }
+
 }

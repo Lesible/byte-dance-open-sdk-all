@@ -7,7 +7,7 @@ import com.sumwhy.bytedance.open.model.resp.BaseData
  * <p> create 2021-08-20 16:40 by lesible </p>
  * @author 何嘉豪
  */
-data class SyncSupplierResult(
+data class SupplierSyncResult(
     /**
      * 结果集
      */

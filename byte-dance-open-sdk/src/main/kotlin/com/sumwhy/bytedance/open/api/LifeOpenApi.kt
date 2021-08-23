@@ -1,7 +1,14 @@
 package com.sumwhy.bytedance.open.api
 
+import com.sumwhy.bytedance.open.model.req.poi.order.*
+import com.sumwhy.bytedance.open.model.req.poi.product.SkuSyncReq
 import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
+import com.sumwhy.bytedance.open.model.resp.BaseData
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
+import com.sumwhy.bytedance.open.model.resp.poi.order.OrderCancelResult
+import com.sumwhy.bytedance.open.model.resp.poi.order.OrderCommitResult
+import com.sumwhy.bytedance.open.model.resp.poi.order.OrderPayStatusNoticeResult
+import com.sumwhy.bytedance.open.model.resp.poi.order.PreSaleCouponConfirmResult
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.*
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.SyncSupplier
 import retrofit2.Call
@@ -24,7 +31,7 @@ interface LifeOpenApi {
     fun syncSupplier(
         @Query("access_token") accessToken: String,
         @Body syncSupplier: SyncSupplier,
-    ): Call<ByteDanceResp<SyncSupplierResult>>
+    ): Call<ByteDanceResp<SupplierSyncResult>>
 
     /**
      * 查询店铺
@@ -33,7 +40,7 @@ interface LifeOpenApi {
     fun querySupplier(
         @Query("access_token") accessToken: String,
         @Query("supplier_ext_id") supplierExtId: String,
-    ): Call<ByteDanceResp<QuerySupplierResult>>
+    ): Call<ByteDanceResp<SupplierQueryResult>>
 
     /**
      * 查询抖音 poi
@@ -42,7 +49,7 @@ interface LifeOpenApi {
     fun queryPoi(
         @Query("access_token") accessToken: String,
         @Query("amap_id") amapId: String,
-    ): Call<ByteDanceResp<QueryPoiResult>>
+    ): Call<ByteDanceResp<PoiQueryResult>>
 
     /**
      * 店铺匹配任务结果查询
@@ -51,7 +58,7 @@ interface LifeOpenApi {
     fun querySupplierMatchResultByTaskIds(
         @Query("access_token") accessToken: String,
         @Query("supplier_task_ids") supplierTaskIds: String,
-    ): Call<ByteDanceResp<QuerySupplierTaskResult>>
+    ): Call<ByteDanceResp<SupplierQueryTaskResult>>
 
     /**
      * 店铺匹配任务结果查询
@@ -60,7 +67,7 @@ interface LifeOpenApi {
     fun querySupplierMatchResultBySupplierExtIds(
         @Query("access_token") accessToken: String,
         @Query("supplier_ext_id") supplierExtIds: String,
-    ): Call<ByteDanceResp<QuerySupplierExtResult>>
+    ): Call<ByteDanceResp<SupplierQueryExtResult>>
 
     /**
      * 同步店铺匹配 poi 任务
@@ -68,7 +75,52 @@ interface LifeOpenApi {
     @POST("poi/v2/supplier/match")
     fun syncSupplierMatch(
         @Query("access_token") accessToken: String,
-        @Body supplierMathReq: SupplierMatchReq,
+        @Body supplierMatchReq: SupplierMatchReq,
     ): Call<ByteDanceResp<SupplierMatchSyncResult>>
 
+    /**
+     * 同步商品 sku
+     */
+    @POST("poi/sku/sync")
+    fun syncSku(
+        @Query("access_token") accessToken: String,
+        @Body skuSyncReq: SkuSyncReq,
+    ): Call<ByteDanceResp<BaseData>>
+
+    /**
+     * 同步订单状态
+     */
+    @POST("poi/order/status")
+    fun syncOrderStatus(
+        @Query("access_token") accessToken: String,
+        @Body orderStatusSyncReq: OrderStatusSyncReq,
+    ): Call<ByteDanceResp<BaseData>>
+
+    /**
+     * 下单
+     */
+    @POST("poi/ext/hotel/order/commit")
+    fun commitOrderExt(@Body orderCommitReq: OrderCommitReq): Call<ByteDanceResp<OrderCommitResult>>
+
+    /**
+     * 支付状态通知
+     */
+    @POST("poi/ext/hotel/order/status")
+    fun notifyOrderPayStatus(@Body orderPayStatusNoticeReq: OrderPayStatusNoticeReq)
+            : Call<ByteDanceResp<OrderPayStatusNoticeResult>>
+
+    /**
+     * 取消订单
+     */
+    @POST("poi/ext/hotel/order/cancel")
+    fun cancelOrder(@Body orderCancelReq: OrderCancelReq): Call<ByteDanceResp<OrderCancelResult>>
+
+    /**
+     * 核销预售券
+     */
+    @POST("poi/order/confirm")
+    fun confirmPreSaleCoupon(
+        @Query("access_token") accessToken: String,
+        @Body preSaleCouponConfirmReq: PreSaleCouponConfirmReq,
+    ): Call<ByteDanceResp<PreSaleCouponConfirmResult>>
 }

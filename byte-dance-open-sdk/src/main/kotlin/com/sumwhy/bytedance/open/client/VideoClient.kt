@@ -11,6 +11,7 @@ class VideoClient(private val videoApi: VideoApi) {
      * 列出指定用户的视频
      *
      * @param universalListParam 通用列表查询参数
+     * @return 用户视频列表
      */
     fun listVideo(universalListParam: UniversalListParam): ByteDanceResp<ListVideoResult>? {
         val listVideoQuery = videoApi.listVideo(universalListParam.toParamMap())

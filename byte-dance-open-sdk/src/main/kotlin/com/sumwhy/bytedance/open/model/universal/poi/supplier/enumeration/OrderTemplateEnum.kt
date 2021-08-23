@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
  * <p> create by lesible at 2021-8-21 16:41:13 </p>
  * @author 何嘉豪
  */
-@JsonSerialize(using = OrderTemplateEnum.OrderTemplateEnumSerializer::class)
-@JsonDeserialize(using = OrderTemplateEnum.OrderTemplateEnumDeserializer::class)
+@JsonSerialize(using = OrderTemplateEnum.Serializer::class)
+@JsonDeserialize(using = OrderTemplateEnum.Deserializer::class)
 enum class OrderTemplateEnum(private val orderTemplateType: Int) {
 
     /**
@@ -36,18 +36,8 @@ enum class OrderTemplateEnum(private val orderTemplateType: Int) {
 
     }
 
-    class OrderTemplateEnumDeserializer :
-        StdDeserializer<OrderTemplateEnum?>(OrderTemplateEnum::class.java) {
+    class Serializer : StdSerializer<OrderTemplateEnum>(OrderTemplateEnum::class.java) {
 
-        override fun deserialize(p: JsonParser, ctx: DeserializationContext): OrderTemplateEnum? {
-            val node = p.codec.readTree<JsonNode>(p)
-            val orderTemplateType = node.asInt()
-            return getEnumByInnerValue(orderTemplateType)
-        }
-    }
-
-    class OrderTemplateEnumSerializer :
-        StdSerializer<OrderTemplateEnum>(OrderTemplateEnum::class.java) {
         override fun serialize(value: OrderTemplateEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
             if (value != null) {
                 gen.writeNumber(value.orderTemplateType)
@@ -55,4 +45,15 @@ enum class OrderTemplateEnum(private val orderTemplateType: Int) {
         }
 
     }
+
+    class Deserializer : StdDeserializer<OrderTemplateEnum?>(OrderTemplateEnum::class.java) {
+
+        override fun deserialize(p: JsonParser, ctx: DeserializationContext): OrderTemplateEnum? {
+            val node = p.codec.readTree<JsonNode>(p)
+            val orderTemplateType = node.asInt()
+            return getEnumByInnerValue(orderTemplateType)
+        }
+
+    }
+
 }

@@ -18,8 +18,9 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
      *
      * @param accessToken 请求凭证
      * @param syncSupplier 同步店铺参数
+     * @return 同步店铺结果
      */
-    fun syncSupplier(accessToken: String, syncSupplier: SyncSupplier): ByteDanceResp<SyncSupplierResult>? {
+    fun syncSupplier(accessToken: String, syncSupplier: SyncSupplier): ByteDanceResp<SupplierSyncResult>? {
         val syncResult = lifeOpenApi.syncSupplier(accessToken, syncSupplier).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
@@ -29,8 +30,9 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
      *
      * @param accessToken 请求凭证
      * @param supplierExtId 接入方店铺 id
+     * @return 查询到的店铺信息
      */
-    fun querySupplier(accessToken: String, supplierExtId: String): ByteDanceResp<QuerySupplierResult>? {
+    fun querySupplier(accessToken: String, supplierExtId: String): ByteDanceResp<SupplierQueryResult>? {
         val queryResult = lifeOpenApi.querySupplier(accessToken, supplierExtId).execute()
         return if (queryResult.isSuccessful) queryResult.body() else null
     }
@@ -40,8 +42,9 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
      *
      * @param accessToken 请求凭证
      * @param amapId 高德 poi id
+     * @return 根据高德 poiId 查询到的 抖音 poiId
      */
-    fun queryPoi(accessToken: String, amapId: String): ByteDanceResp<QueryPoiResult>? {
+    fun queryPoi(accessToken: String, amapId: String): ByteDanceResp<PoiQueryResult>? {
         val queryResult = lifeOpenApi.queryPoi(accessToken, amapId).execute()
         return if (queryResult.isSuccessful) queryResult.body() else null
     }
@@ -51,9 +54,10 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
      *
      * @param accessToken 请求凭证
      * @param supplierTaskIds 第三方上传任务 id 列表 单次查询最多10个任务。
+     * @return 店铺匹配任务结果
      */
     fun querySupplierMatchResultByTaskIds(accessToken: String, supplierTaskIds: List<String>)
-            : ByteDanceResp<QuerySupplierTaskResult>? {
+            : ByteDanceResp<SupplierQueryTaskResult>? {
         val queryResult = lifeOpenApi.querySupplierMatchResultByTaskIds(
             accessToken, supplierTaskIds.joinToString()).execute()
         return if (queryResult.isSuccessful) queryResult.body() else null
@@ -64,9 +68,10 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
      *
      * @param accessToken 请求凭证
      * @param supplierExtIds 第三方店铺 id 列表，单次查询最多50个店铺。
+     * @return 店铺匹配任务结果
      */
     fun querySupplierMatchResultBySupplierExtIds(accessToken: String, supplierExtIds: List<String>)
-            : ByteDanceResp<QuerySupplierExtResult>? {
+            : ByteDanceResp<SupplierQueryExtResult>? {
         val queryResult = lifeOpenApi.querySupplierMatchResultBySupplierExtIds(
             accessToken, supplierExtIds.joinToString()).execute()
         return if (queryResult.isSuccessful) queryResult.body() else null
@@ -74,10 +79,14 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
 
     /**
      * 同步店铺匹配 poi 任务
+     *
+     * @param accessToken 请求凭证
+     * @param supplierMatchReq 同步请求
+     * @return 同步店铺结果
      */
-    fun syncSupplierMatch(accessToken: String, supplierMathReq: SupplierMatchReq)
+    fun syncSupplierMatch(accessToken: String, supplierMatchReq: SupplierMatchReq)
             : ByteDanceResp<SupplierMatchSyncResult>? {
-        val syncResult = lifeOpenApi.syncSupplierMatch(accessToken, supplierMathReq).execute()
+        val syncResult = lifeOpenApi.syncSupplierMatch(accessToken, supplierMatchReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
 

@@ -1,23 +1,24 @@
-package com.sumwhy.bytedance.open.model.resp.poi.supplier
+package com.sumwhy.bytedance.open.model.resp.poi.order
 
 import com.sumwhy.bytedance.open.model.resp.BaseData
 
 /**
- * <p> 店铺匹配同步结果 </p>
- * <p> create 2021-08-23 13:55 by lesible </p>
+ * <p> 核销预授权结果 </p>
+ * <p> create 2021-08-23 18:16 by lesible </p>
  * @author 何嘉豪
  */
-data class SupplierMatchSyncResult(
+data class PreSaleCouponConfirmResult(
 
     /**
-     * 抖音平台任务 id
+     * 接入方订单 id
      */
-    val taskId: String?,
+    val orderExtId: String?,
+
 
     /**
-     * 上传状态(1:成功，2:失败)
+     * 接入方券码 id
      */
-    val isSuccess: Int?,
+    val codeList: List<String>?,
 
     /**
      * 错误码

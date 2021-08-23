@@ -5,6 +5,7 @@ import com.sumwhy.bytedance.open.client.*
 import com.sumwhy.bytedance.open.common.OpenCredentials
 import com.sumwhy.bytedance.open.common.metadata.ByteDanceOpenSdkClientProperties
 import com.sumwhy.bytedance.open.config.OpenApiFactory
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
@@ -23,27 +24,48 @@ import org.springframework.context.annotation.Import
 class ByteDanceOpenSdkAutoConfiguration {
 
     @Bean
-    fun oauthClient(openApiFactory: OpenApiFactory, openCredentials: OpenCredentials) =
-        OauthClient(openApiFactory.generateApi(OauthApi::class.java), openCredentials)
+    @ConditionalOnMissingBean
+    fun oauthApi(openApiFactory: OpenApiFactory) = openApiFactory.generateApi(OauthApi::class.java)
 
     @Bean
-    fun videoClient(openApiFactory: OpenApiFactory) =
-        VideoClient(openApiFactory.generateApi(VideoApi::class.java))
+    fun oauthClient(oauthApi: OauthApi, openCredentials: OpenCredentials) =
+        OauthClient(oauthApi, openCredentials)
 
     @Bean
-    fun userClient(openApiFactory: OpenApiFactory) =
-        UserClient(openApiFactory.generateApi(UserApi::class.java))
+    @ConditionalOnMissingBean
+    fun videoApi(openApiFactory: OpenApiFactory) = openApiFactory.generateApi(VideoApi::class.java)
 
     @Bean
-    fun userDataClient(openApiFactory: OpenApiFactory) =
-        DataUserClient(openApiFactory.generateApi(DataApi::class.java))
+    fun videoClient(videoApi: VideoApi) = VideoClient(videoApi)
 
     @Bean
-    fun videoDataClient(openApiFactory: OpenApiFactory) =
-        DataVideoClient(openApiFactory.generateApi(DataApi::class.java))
+    @ConditionalOnMissingBean
+    fun userApi(openApiFactory: OpenApiFactory) = openApiFactory.generateApi(UserApi::class.java)
 
     @Bean
-    fun poiSupplierClient(openApiFactory: OpenApiFactory) =
-        PoiSupplierClient(openApiFactory.generateApi(LifeOpenApi::class.java))
+    fun userClient(userApi: UserApi) = UserClient(userApi)
+
+    @Bean
+    @ConditionalOnMissingBean
+    fun dataApi(openApiFactory: OpenApiFactory) = openApiFactory.generateApi(DataApi::class.java)
+
+    @Bean
+    fun userDataClient(dataApi: DataApi) = DataUserClient(dataApi)
+
+    @Bean
+    fun videoDataClient(dataApi: DataApi) = DataVideoClient(dataApi)
+
+    @Bean
+    @ConditionalOnMissingBean
+    fun lifeOpenApi(openApiFactory: OpenApiFactory) = openApiFactory.generateApi(LifeOpenApi::class.java)
+
+    @Bean
+    fun poiSupplierClient(lifeOpenApi: LifeOpenApi) = PoiSupplierClient(lifeOpenApi)
+
+    @Bean
+    fun poiProductClient(lifeOpenApi: LifeOpenApi) = PoiProductClient(lifeOpenApi)
+
+    @Bean
+    fun poiOrderClient(lifeOpenApi: LifeOpenApi) = PoiOrderClient(lifeOpenApi)
 
 }

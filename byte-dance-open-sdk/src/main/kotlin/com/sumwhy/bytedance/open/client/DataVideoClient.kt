@@ -14,6 +14,7 @@ class DataVideoClient(private val dataApi: DataApi) {
      * 获取指定视频的基本信息
      *
      * @param videoDataParam 视频数据查询参数
+     * @return 指定视频的基本信息
      */
     fun getItemBase(videoDataParam: VideoDataParam): String? {
         val videoItemBase = dataApi.getItemBase(videoDataParam.toParamMap()).execute()
@@ -24,6 +25,7 @@ class DataVideoClient(private val dataApi: DataApi) {
      * 获取指定视频的播放数据
      *
      * @param videoDataParam 视频数据查询参数
+     * @return 指定视频的播放数据
      */
     fun getItemPlay(videoDataParam: VideoDataParam): String? {
         val videoItemPlay = dataApi.getItemPlay(videoDataParam.toParamMap()).execute()

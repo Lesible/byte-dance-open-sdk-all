@@ -8,7 +8,7 @@ import com.sumwhy.bytedance.open.model.resp.BaseData
  *
  * @author 何嘉豪
  */
-data class QueryPoiResult(
+data class PoiQueryResult(
     /**
      * 纬度
      */

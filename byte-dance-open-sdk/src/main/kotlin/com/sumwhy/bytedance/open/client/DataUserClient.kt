@@ -17,6 +17,7 @@ class DataUserClient(private val dataApi: DataApi) {
      * 查询用户视频信息
      *
      * @param userDataParam 用户数据查询参数
+     * @return 用户视频信息
      */
     fun getUserItem(userDataParam: UserDataParam): ByteDanceResp<UserDataResult<UserItem>>? {
         val userItem = dataApi.getUserItem(userDataParam.toParamMap()).execute()
@@ -27,8 +28,8 @@ class DataUserClient(private val dataApi: DataApi) {
      * 查询用户粉丝信息
      *
      * @param userDataParam 用户数据查询参数
+     * @return 用户粉丝信息
      */
-
     fun getUserFans(userDataParam: UserDataParam): ByteDanceResp<UserDataResult<UserFan>>? {
         val userFans = dataApi.getUserFans(userDataParam.toParamMap()).execute()
         return if (userFans.isSuccessful) userFans.body() else null
@@ -38,6 +39,7 @@ class DataUserClient(private val dataApi: DataApi) {
      * 查询用户点赞信息
      *
      * @param userDataParam 用户数据查询参数
+     * @return 用户点赞信息
      */
     fun getUserLike(userDataParam: UserDataParam): ByteDanceResp<UserDataResult<UserLike>>? {
         val userLike = dataApi.getUserLike(userDataParam.toParamMap()).execute()
@@ -48,6 +50,7 @@ class DataUserClient(private val dataApi: DataApi) {
      * 查询用户评论信息
      *
      * @param userDataParam 用户数据查询参数
+     * @return 用户评论信息
      */
     fun getUserComment(userDataParam: UserDataParam): ByteDanceResp<UserDataResult<UserComment>>? {
         val userComment = dataApi.getUserComment(userDataParam.toParamMap()).execute()
@@ -58,6 +61,7 @@ class DataUserClient(private val dataApi: DataApi) {
      * 查询用户分享信息
      *
      * @param userDataParam 用户数据查询参数
+     * @return 用户分享信息
      */
     fun getUserShare(userDataParam: UserDataParam): ByteDanceResp<UserDataResult<UserShare>>? {
         val userShare = dataApi.getUserShare(userDataParam.toParamMap()).execute()
@@ -68,6 +72,7 @@ class DataUserClient(private val dataApi: DataApi) {
      * 查询用户主页信息
      *
      * @param userDataParam 用户数据查询参数
+     * @return 用户主页信息
      */
     fun getUserProfile(userDataParam: UserDataParam): ByteDanceResp<UserDataResult<UserProfile>>? {
         val userProfile = dataApi.getUserProfile(userDataParam.toParamMap()).execute()

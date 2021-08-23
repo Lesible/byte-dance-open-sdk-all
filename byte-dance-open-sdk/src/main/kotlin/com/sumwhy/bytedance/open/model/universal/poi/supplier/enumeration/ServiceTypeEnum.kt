@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
  * <p> @date: 2021-08-21 18:04</p>
  * @author Lesible
  */
-@JsonSerialize(using = ServiceTypeEnum.ServiceTypeEnumSerializer::class)
-@JsonDeserialize(using = ServiceTypeEnum.ServiceTypeEnumDeserializer::class)
+@JsonSerialize(using = ServiceTypeEnum.Serializer::class)
+@JsonDeserialize(using = ServiceTypeEnum.Deserializer::class)
 enum class ServiceTypeEnum(private val serviceType: Int) {
 
     /**
@@ -76,22 +76,23 @@ enum class ServiceTypeEnum(private val serviceType: Int) {
 
     }
 
-    class ServiceTypeEnumDeserializer :
-        StdDeserializer<ServiceTypeEnum?>(ServiceTypeEnum::class.java) {
+
+    class Serializer : StdSerializer<ServiceTypeEnum>(ServiceTypeEnum::class.java) {
+
+        override fun serialize(value: ServiceTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
+            if (value != null) {
+                gen.writeNumber(value.serviceType)
+            }
+        }
+
+    }
+
+    class Deserializer : StdDeserializer<ServiceTypeEnum?>(ServiceTypeEnum::class.java) {
 
         override fun deserialize(p: JsonParser, ctx: DeserializationContext): ServiceTypeEnum? {
             val node = p.codec.readTree<JsonNode>(p)
             val serviceType = node.asInt()
             return getEnumByInnerValue(serviceType)
-        }
-    }
-
-    class ServiceTypeEnumSerializer :
-        StdSerializer<ServiceTypeEnum>(ServiceTypeEnum::class.java) {
-        override fun serialize(value: ServiceTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
-            if (value != null) {
-                gen.writeNumber(value.serviceType)
-            }
         }
 
     }

@@ -9,7 +9,7 @@ import com.sumwhy.bytedance.open.model.universal.poi.supplier.SyncSupplier
  *
  * @author 何嘉豪
  */
-data class QuerySupplierResult(
+data class SupplierQueryResult(
 
     /**
      * 数据详情

@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
  * <p> create by lesible at 2021-8-21 16:48:35 </p>
  * @author 何嘉豪
  */
-@JsonSerialize(using = SupplierTypeEnum.SupplierTypeEnumSerializer::class)
-@JsonDeserialize(using = SupplierTypeEnum.SupplierTypeEnumDeserializer::class)
+@JsonSerialize(using = SupplierTypeEnum.Serializer::class)
+@JsonDeserialize(using = SupplierTypeEnum.Deserializer::class)
 enum class SupplierTypeEnum(private val supplierType: Int) {
 
     /**
@@ -86,22 +86,22 @@ enum class SupplierTypeEnum(private val supplierType: Int) {
 
     }
 
-    class SupplierTypeEnumDeserializer :
-        StdDeserializer<SupplierTypeEnum?>(SupplierTypeEnum::class.java) {
+    class Serializer : StdSerializer<SupplierTypeEnum>(SupplierTypeEnum::class.java) {
+
+        override fun serialize(value: SupplierTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
+            if (value != null) {
+                gen.writeNumber(value.supplierType)
+            }
+        }
+
+    }
+
+    class Deserializer : StdDeserializer<SupplierTypeEnum?>(SupplierTypeEnum::class.java) {
 
         override fun deserialize(p: JsonParser, ctx: DeserializationContext): SupplierTypeEnum? {
             val node = p.codec.readTree<JsonNode>(p)
             val supplierType = node.asInt()
             return getEnumByInnerValue(supplierType)
-        }
-    }
-
-    class SupplierTypeEnumSerializer :
-        StdSerializer<SupplierTypeEnum>(SupplierTypeEnum::class.java) {
-        override fun serialize(value: SupplierTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
-            if (value != null) {
-                gen.writeNumber(value.supplierType)
-            }
         }
 
     }

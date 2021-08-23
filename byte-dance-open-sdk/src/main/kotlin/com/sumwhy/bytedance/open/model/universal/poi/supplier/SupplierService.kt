@@ -1,6 +1,6 @@
 package com.sumwhy.bytedance.open.model.universal.poi.supplier
 
-import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.OnlineStatusEnum
+import com.sumwhy.bytedance.open.model.universal.poi.enumeration.OnlineStatusEnum
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.ServiceTypeEnum
 
 /**

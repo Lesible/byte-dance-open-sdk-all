@@ -15,8 +15,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
  * <p> create by lesible at 2021-08-21 22:31</p>
  * @author 何嘉豪
  */
-@JsonSerialize(using = BreakfastTypeEnum.BreakfastTypeEnumSerializer::class)
-@JsonDeserialize(using = BreakfastTypeEnum.BreakfastTypeEnumDeserializer::class)
+@JsonSerialize(using = BreakfastTypeEnum.Serializer::class)
+@JsonDeserialize(using = BreakfastTypeEnum.Deserializer::class)
 enum class BreakfastTypeEnum(private val breakfastType: Int) {
 
     /**
@@ -38,7 +38,7 @@ enum class BreakfastTypeEnum(private val breakfastType: Int) {
         fun getEnumByInnerValue(breakfastType: Int?) = values().find { it.breakfastType == breakfastType }
     }
 
-    class BreakfastTypeEnumSerializer : StdSerializer<BreakfastTypeEnum>(BreakfastTypeEnum::class.java) {
+    class Serializer : StdSerializer<BreakfastTypeEnum>(BreakfastTypeEnum::class.java) {
 
         override fun serialize(value: BreakfastTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
             if (value != null) {
@@ -48,7 +48,7 @@ enum class BreakfastTypeEnum(private val breakfastType: Int) {
 
     }
 
-    class BreakfastTypeEnumDeserializer : StdDeserializer<BreakfastTypeEnum>(BreakfastTypeEnum::class.java) {
+    class Deserializer : StdDeserializer<BreakfastTypeEnum>(BreakfastTypeEnum::class.java) {
 
         override fun deserialize(p: JsonParser, ctx: DeserializationContext): BreakfastTypeEnum? {
             val node = p.codec.readTree<JsonNode>(p)

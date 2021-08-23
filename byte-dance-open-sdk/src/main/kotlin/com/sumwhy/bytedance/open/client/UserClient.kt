@@ -16,6 +16,7 @@ class UserClient(private val userApi: UserApi) {
      * 列出指定用户的粉丝
      *
      * @param universalListParam 通用列表查询参数
+     * @return 用户粉丝信息
      */
     fun listFans(universalListParam: UniversalListParam): ByteDanceResp<ListFansResult>? {
         val listFansQuery = userApi.listFans(universalListParam.toParamMap())

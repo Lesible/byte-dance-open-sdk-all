@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer
  * <p> create by lesible at 2021-8-21 16:45:12 </p>
  * @author 何嘉豪
  */
-@JsonSerialize(using = EntryTypeEnum.EntryTypeEnumSerializer::class)
-@JsonDeserialize(using = EntryTypeEnum.EntryTypeEnumDeserializer::class)
+@JsonSerialize(using = EntryTypeEnum.Serializer::class)
+@JsonDeserialize(using = EntryTypeEnum.Deserializer::class)
 enum class EntryTypeEnum(private val entryType: Int) {
 
     /**
@@ -36,18 +36,8 @@ enum class EntryTypeEnum(private val entryType: Int) {
 
     }
 
-    class EntryTypeEnumDeserializer :
-        StdDeserializer<EntryTypeEnum?>(EntryTypeEnum::class.java) {
+    class Serializer : StdSerializer<EntryTypeEnum>(EntryTypeEnum::class.java) {
 
-        override fun deserialize(p: JsonParser, ctx: DeserializationContext): EntryTypeEnum? {
-            val node = p.codec.readTree<JsonNode>(p)
-            val entryType = node.asInt()
-            return getEnumByInnerValue(entryType)
-        }
-    }
-
-    class EntryTypeEnumSerializer :
-        StdSerializer<EntryTypeEnum>(EntryTypeEnum::class.java) {
         override fun serialize(value: EntryTypeEnum?, gen: JsonGenerator, provider: SerializerProvider?) {
             if (value != null) {
                 gen.writeNumber(value.entryType)
@@ -55,4 +45,15 @@ enum class EntryTypeEnum(private val entryType: Int) {
         }
 
     }
+
+    class Deserializer : StdDeserializer<EntryTypeEnum?>(EntryTypeEnum::class.java) {
+
+        override fun deserialize(p: JsonParser, ctx: DeserializationContext): EntryTypeEnum? {
+            val node = p.codec.readTree<JsonNode>(p)
+            val entryType = node.asInt()
+            return getEnumByInnerValue(entryType)
+        }
+
+    }
+
 }

@@ -8,7 +8,7 @@ import com.sumwhy.bytedance.open.model.resp.poi.supplier.enumeration.MatchStatus
  * <p> create 2021-08-23 11:40 by lesible </p>
  * @author 何嘉豪
  */
-data class QuerySupplierExtResult(
+data class SupplierQueryExtResult(
 
     /**
      * 匹配状态信息
