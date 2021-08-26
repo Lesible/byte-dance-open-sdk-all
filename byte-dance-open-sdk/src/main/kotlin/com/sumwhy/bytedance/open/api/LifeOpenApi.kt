@@ -1,14 +1,15 @@
 package com.sumwhy.bytedance.open.api
 
 import com.sumwhy.bytedance.open.model.req.poi.order.*
-import com.sumwhy.bytedance.open.model.req.poi.product.SkuSyncReq
+import com.sumwhy.bytedance.open.model.req.poi.product.*
 import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
 import com.sumwhy.bytedance.open.model.resp.BaseData
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
-import com.sumwhy.bytedance.open.model.resp.poi.order.OrderCancelResult
-import com.sumwhy.bytedance.open.model.resp.poi.order.OrderCommitResult
-import com.sumwhy.bytedance.open.model.resp.poi.order.OrderPayStatusNoticeResult
-import com.sumwhy.bytedance.open.model.resp.poi.order.PreSaleCouponConfirmResult
+import com.sumwhy.bytedance.open.model.resp.poi.order.*
+import com.sumwhy.bytedance.open.model.resp.poi.product.SpuInfoSyncResult
+import com.sumwhy.bytedance.open.model.resp.poi.product.SpuStatusSyncResult
+import com.sumwhy.bytedance.open.model.resp.poi.product.SpuStockSyncResult
+import com.sumwhy.bytedance.open.model.resp.poi.product.SpuSyncResult
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.*
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.SyncSupplier
 import retrofit2.Call
@@ -88,6 +89,42 @@ interface LifeOpenApi {
     ): Call<ByteDanceResp<BaseData>>
 
     /**
+     * 多门店 spu 同步
+     */
+    @POST("poi/v2/spu/sync")
+    fun syncSpu(
+        @Query("access_token") accessToken: String,
+        @Body spuSyncReq: SpuSyncReq,
+    ): Call<ByteDanceResp<SpuSyncResult>>
+
+    /**
+     * 多门店 spu 状态同步
+     */
+    @POST("poi/v2/spu/status_sync")
+    fun syncSpuStatus(
+        @Query("access_token") accessToken: String,
+        @Body spuStatusSyncReq: SpuStatusSyncReq,
+    ): Call<ByteDanceResp<SpuStatusSyncResult>>
+
+    /**
+     * 多门店 spu 库存同步
+     */
+    @POST("poi/v2/spu/stock_update")
+    fun syncSpuStock(
+        @Query("access_token") accessToken: String,
+        @Body spuStockSyncReq: SpuStockSyncReq,
+    ): Call<ByteDanceResp<SpuStockSyncResult>>
+
+    /**
+     * 多门店 spu 信息同步
+     */
+    @POST("poi/v2/spu/get")
+    fun syncSpuInfo(
+        @Query("access_token") accessToken: String,
+        @Body spuInfoSyncReq: SpuInfoSyncReq,
+    ): Call<ByteDanceResp<SpuInfoSyncResult>>
+
+    /**
      * 同步订单状态
      */
     @POST("poi/order/status")
@@ -123,4 +160,32 @@ interface LifeOpenApi {
         @Query("access_token") accessToken: String,
         @Body preSaleCouponConfirmReq: PreSaleCouponConfirmReq,
     ): Call<ByteDanceResp<PreSaleCouponConfirmResult>>
+
+    /**
+     * 获取下载账单 token
+     */
+    @GET("poi/order/bill/token")
+    fun getBillToken(
+        @Query("access_token") accessToken: String,
+        @Query("bill_date") billDate: String,
+    ): Call<ByteDanceResp<BillTokenResult>>
+
+    /**
+     * 获取下载订单 token
+     */
+    @GET("poi/order/list/token")
+    fun getOrderToken(
+        @Query("access_token") accessToken: String,
+        @Query("order_date") orderDate: String,
+    ): Call<ByteDanceResp<OrderTokenResult>>
+
+    /**
+     * 同步外部订单到抖音订单
+     */
+    @POST("poi/order/sync")
+    fun syncOrder(
+        @Query("access_token") accessToken: String,
+        @Body orderSyncReq: OrderSyncReq,
+    ): Call<ByteDanceResp<OrderSyncResult>>
+
 }

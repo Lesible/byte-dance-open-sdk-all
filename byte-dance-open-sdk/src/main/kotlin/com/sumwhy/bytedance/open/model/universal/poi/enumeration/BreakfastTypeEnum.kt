@@ -1,4 +1,4 @@
-package com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration
+package com.sumwhy.bytedance.open.model.universal.poi.enumeration
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.core.JsonParser

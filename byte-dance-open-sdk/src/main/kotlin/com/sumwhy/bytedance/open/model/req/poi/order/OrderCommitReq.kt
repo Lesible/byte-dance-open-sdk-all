@@ -93,7 +93,7 @@ class OrderCommitReq private constructor(builder: Builder) {
 
     }
 
-    class Builder(
+    class Builder internal constructor(
         val customerPhone: String,
         val reserveAmount: Int,
         val spuExtId: String,
