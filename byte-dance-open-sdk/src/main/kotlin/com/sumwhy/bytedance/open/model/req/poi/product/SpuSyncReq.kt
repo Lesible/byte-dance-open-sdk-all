@@ -1,6 +1,8 @@
 package com.sumwhy.bytedance.open.model.req.poi.product
 
 import com.sumwhy.bytedance.open.model.universal.poi.product.SpuAttribute
+import com.sumwhy.bytedance.open.model.universal.poi.supplier.EntryMiniApp
+import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.EntryTypeEnum
 
 /**
  * <p>  </p>
@@ -141,7 +143,7 @@ class SpuSyncReq private constructor(builder: Builder) {
         var takeRate: Int? = null
         var entryInfo: EntryInfo? = null
         var sortWeight: Int? = null
-        var frontCategoryTag: List<FrontCategoryTag>? = null
+        var frontCategoryTag: List<String>? = null
         var orderDependsOnDate: Boolean? = null
 
         fun highlights(highlights: List<Highlight>): Builder {
@@ -169,7 +171,7 @@ class SpuSyncReq private constructor(builder: Builder) {
             return this
         }
 
-        fun frontCategoryTag(frontCategoryTag: List<FrontCategoryTag>): Builder {
+        fun frontCategoryTag(frontCategoryTag: List<String>): Builder {
             this.frontCategoryTag = frontCategoryTag
             return this
         }
@@ -183,8 +185,33 @@ class SpuSyncReq private constructor(builder: Builder) {
     }
 }
 
-class FrontCategoryTag
+class EntryInfo {
+    /**
+     * 小程序入口参数
+     */
+    val entryMiniApp: EntryMiniApp? = null
 
-class EntryInfo
+    /**
+     * 入口类型(1:H5，2:抖音小程序，3:抖音链接)
+     */
+    val entryType: EntryTypeEnum? = null
 
-class Highlight
+
+    /**
+     * 入口链接
+     */
+    val entryUrl: String? = null
+}
+
+class Highlight(
+
+    /**
+     * 介绍，字符串长度<=5
+     */
+    val content: String?,
+
+    /**
+     * 优先级，数字越小优先级越高
+     */
+    val priority: Int?,
+)

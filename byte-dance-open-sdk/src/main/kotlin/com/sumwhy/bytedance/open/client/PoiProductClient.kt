@@ -1,13 +1,10 @@
 package com.sumwhy.bytedance.open.client
 
 import com.sumwhy.bytedance.open.api.LifeOpenApi
-import com.sumwhy.bytedance.open.model.req.poi.product.SkuSyncReq
-import com.sumwhy.bytedance.open.model.req.poi.product.SpuStatusSyncReq
-import com.sumwhy.bytedance.open.model.req.poi.product.SpuSyncReq
+import com.sumwhy.bytedance.open.model.req.poi.product.*
 import com.sumwhy.bytedance.open.model.resp.BaseData
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
-import com.sumwhy.bytedance.open.model.resp.poi.product.SpuStatusSyncResult
-import com.sumwhy.bytedance.open.model.resp.poi.product.SpuSyncResult
+import com.sumwhy.bytedance.open.model.resp.poi.product.*
 
 /**
  * <p> 生活服务开放能力 - 商品库接入 </p>
@@ -50,6 +47,47 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
         spuStatusSyncReq: SpuStatusSyncReq,
     ): ByteDanceResp<SpuStatusSyncResult>? {
         val syncResult = lifeOpenApi.syncSpuStatus(accessToken, spuStatusSyncReq).execute()
+        return if (syncResult.isSuccessful) syncResult.body() else null
+    }
+
+    /**
+     * 多门店 spu 库存同步
+     *
+     * @param accessToken 调用凭证
+     * @param spuStockSyncReq spu 库存同步请求
+     * @return 商品 spu 库存同步结果
+     */
+    fun syncSpuStock(
+        accessToken: String, spuStockSyncReq: SpuStockSyncReq,
+    ): ByteDanceResp<SpuStockSyncResult>? {
+        val syncResult = lifeOpenApi.syncSpuStock(accessToken, spuStockSyncReq).execute()
+        return if (syncResult.isSuccessful) syncResult.body() else null
+    }
+
+    /**
+     * 多门店 spu 信息同步
+     *
+     * @param accessToken 调用凭证
+     * @param spuInfoSyncReq spu 信息同步请求
+     * @return 商品 spu 信息同步结果
+     */
+    fun syncSpuInfo(accessToken: String, spuInfoSyncReq: SpuInfoSyncReq): ByteDanceResp<SpuInfoSyncResult>? {
+        val syncResult = lifeOpenApi.syncSpuInfo(accessToken, spuInfoSyncReq).execute()
+        return if (syncResult.isSuccessful) syncResult.body() else null
+    }
+
+    /**
+     * 商品达人分佣配置同步
+     *
+     * @param accessToken 调用凭证
+     * @param spuTakeRateSyncReq 商品达人分佣配置同步请求
+     * @return 商品达人分佣配置同步结果
+     */
+    fun syncSpuTakeRate(
+        accessToken: String,
+        spuTakeRateSyncReq: SpuTakeRateSyncReq,
+    ): ByteDanceResp<SpuTakeRateSyncResult>? {
+        val syncResult = lifeOpenApi.syncSpuTakeRate(accessToken, spuTakeRateSyncReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
 

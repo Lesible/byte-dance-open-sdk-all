@@ -6,10 +6,7 @@ import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
 import com.sumwhy.bytedance.open.model.resp.BaseData
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
 import com.sumwhy.bytedance.open.model.resp.poi.order.*
-import com.sumwhy.bytedance.open.model.resp.poi.product.SpuInfoSyncResult
-import com.sumwhy.bytedance.open.model.resp.poi.product.SpuStatusSyncResult
-import com.sumwhy.bytedance.open.model.resp.poi.product.SpuStockSyncResult
-import com.sumwhy.bytedance.open.model.resp.poi.product.SpuSyncResult
+import com.sumwhy.bytedance.open.model.resp.poi.product.*
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.*
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.SyncSupplier
 import retrofit2.Call
@@ -123,6 +120,15 @@ interface LifeOpenApi {
         @Query("access_token") accessToken: String,
         @Body spuInfoSyncReq: SpuInfoSyncReq,
     ): Call<ByteDanceResp<SpuInfoSyncResult>>
+
+    /**
+     * 商品达人分佣配置
+     */
+    @POST("poi/v2/spu/take_rate/sync")
+    fun syncSpuTakeRate(
+        @Query("access_token") accessToken: String,
+        @Body spuTakeRateSyncReq: SpuTakeRateSyncReq,
+    ): Call<ByteDanceResp<SpuTakeRateSyncResult>>
 
     /**
      * 同步订单状态
