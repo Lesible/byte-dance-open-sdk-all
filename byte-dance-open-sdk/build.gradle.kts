@@ -29,7 +29,7 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 }
 
 group = "com.sumwhy"
-version = "1.0.1"
+version = "1.0.2"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
@@ -63,8 +63,8 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-reflect")
     api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     api("commons-codec:commons-codec:1.15")
-    api("org.apache.commons:commons-lang3:3.11")
-    api("org.slf4j:slf4j-api:1.7.25")
+    api("org.apache.commons:commons-lang3:3.12.0")
+    api("org.slf4j:slf4j-api:1.7.32")
     api("com.squareup.okhttp3:logging-interceptor:3.14.7")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     compileOnly("org.springframework.boot:spring-boot-starter")

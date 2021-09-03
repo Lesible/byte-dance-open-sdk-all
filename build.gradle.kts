@@ -10,7 +10,7 @@ plugins {
 
 allprojects {
     group = "com.sumwhy"
-    version = "1.0.0"
+    version = "1.0.2"
 
     tasks.withType<JavaCompile> {
         sourceCompatibility = "1.8"

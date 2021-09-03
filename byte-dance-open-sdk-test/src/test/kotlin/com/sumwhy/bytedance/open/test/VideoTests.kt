@@ -32,13 +32,27 @@ class VideoTests {
     @Resource
     lateinit var userClient: UserClient
 
+
+    /**
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WbqNPqAPZN1rg2kK1MRZ/P760zdRmYqig357zEBO9gravKhv0udooTGpFz2Uw==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783GLuP/mDM5BwrwivLVIWavj960zdRmYqig357zEBjP+USZOpoIUzoHAMpel++g==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WPsNfuKM5N1qAOkLFYVbvf460zdRmYqig357zEBOi0RCAGd99q2ZKu8bpq7+w==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WbsNPGHMpJxrgKkKFYVa/n060zdRmYqig357zEBnR4gMOMF5vMknBAtOHoi1A==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WbqPPGKOJJ0oQ+lLlUaavX860zdRmYqig357zEBLFgRTPoFQ3/0LE43wRtwuw==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WboNfqAO5F5rQ2uKVMab/L+60zdRmYqig357zEB2/RSUgITXGsrtGwG2K1Btw==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WboOPqFP5B5qAuuJ1gVZvj660zdRmYqig357zEBA+6v4o+0EAWLLQg6V66Swg==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WboPP2BOpB3rwyuLVgVavf/60zdRmYqig357zEBfTrbp9LJrDMLLrW0pypNqQ==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WfgNPyGP5B0rg2lLlYab/T960zdRmYqig357zEByxZpvQxVNqNYjSiBwE6e7Q==
+     * @9Vxc0aqXSsM5b2D0dt41Qc783WfgO/+EM5J0qA+iL1AUa/T960zdRmYqig357zEBAB/FASalehnNv8/PvrcCtQ==
+     */
     @Test
     fun listVideo() {
         val universalListParam = UniversalListParam.builder(
-            "b69bf022-7229-4a1f-9ca2-32ab13720fe5",
-            "act.f6efc8c85dd5b2deabd826e6a5703d6frPgdFNHAQvoiYHfwS2ULzuAjZgdv", 10
+            "0b5ddea1-b6d0-49b0-a273-27b56c66b3b6",
+            "act.9ccd30d4b98e1d0938c2b9156bb0b74efHuhXSDN6LYgqsJYbRZdHViCpbRA", 10
         ).build()
         val listVideo = videoClient.listVideo(universalListParam)
+        listVideo?.data?.list?.forEach { println(it.itemId) }
         log.info("listVideo:{}", listVideo)
     }
 

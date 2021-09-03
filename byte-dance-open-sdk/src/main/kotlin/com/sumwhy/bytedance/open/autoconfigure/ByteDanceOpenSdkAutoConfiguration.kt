@@ -68,4 +68,11 @@ class ByteDanceOpenSdkAutoConfiguration {
     @Bean
     fun poiOrderClient(lifeOpenApi: LifeOpenApi) = PoiOrderClient(lifeOpenApi)
 
+    @Bean
+    @ConditionalOnMissingBean
+    fun enterpriseApi(openApiFactory: OpenApiFactory) = openApiFactory.generateApi(EnterpriseApi::class.java)
+
+    @Bean
+    fun enterpriseClient(enterpriseApi: EnterpriseApi) = EnterpriseClient(enterpriseApi)
+
 }

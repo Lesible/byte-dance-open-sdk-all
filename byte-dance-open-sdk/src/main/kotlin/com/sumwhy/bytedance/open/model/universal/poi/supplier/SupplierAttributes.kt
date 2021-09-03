@@ -1,6 +1,7 @@
 package com.sumwhy.bytedance.open.model.universal.poi.supplier
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.sumwhy.bytedance.open.model.universal.poi.HotelServiceFacility
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.OrderTemplateEnum
 
 /**

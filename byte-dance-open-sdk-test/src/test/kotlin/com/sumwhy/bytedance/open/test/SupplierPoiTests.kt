@@ -6,8 +6,8 @@ import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.SupplierQueryResult
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.SupplierSyncResult
+import com.sumwhy.bytedance.open.model.universal.poi.HotelServiceFacility
 import com.sumwhy.bytedance.open.model.universal.poi.enumeration.OnlineStatusEnum
-import com.sumwhy.bytedance.open.model.universal.poi.supplier.HotelServiceFacility
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.SupplierAttributes
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.SyncSupplier.Companion.builder
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.SupplierTypeEnum
