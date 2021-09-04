@@ -3,12 +3,15 @@ package com.sumwhy.bytedance.open.test
 import com.sumwhy.bytedance.open.client.EnterpriseClient
 import com.sumwhy.bytedance.open.model.req.enterprise.BizToolBindItemReq
 import com.sumwhy.bytedance.open.model.req.enterprise.BizToolListReq
+import com.sumwhy.bytedance.open.model.req.enterprise.LeadsUserListReq
+import com.sumwhy.bytedance.open.model.universal.enterprise.enumeration.AppointmentTypeEnum
 import com.sumwhy.bytedance.open.model.universal.enterprise.enumeration.BindTypeEnum
 import com.sumwhy.bytedance.open.model.universal.enterprise.enumeration.BizToolTypeEnum
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.boot.test.context.SpringBootTest
+import java.time.LocalDateTime
 import javax.annotation.Resource
 
 @SpringBootTest
@@ -46,6 +49,15 @@ class EnterpriseTests {
             "@9Vxc0aqXSsM5b2D0dt41Qc783WPsNfuKM5N1qAOkLFYVbvf460zdRmYqig357zEBOi0RCAGd99q2ZKu8bpq7+w=="
         ))
         log.info("itemBindBizToolList: {}", itemBindBizToolList)
+    }
+
+    @Test
+    fun listLeadsUser() {
+        val leadsUserListResult = enterpriseClient.listLeadsUser(LeadsUserListReq
+            .builder(ACCESS_TOKEN, OPEN_ID, AppointmentTypeEnum.values().toList(),
+                LocalDateTime.of(2021, 9, 4, 10, 0),
+                LocalDateTime.of(2021, 9, 4, 12, 0), 0, 10).build())
+        log.info("leadsUserListResult: {}", leadsUserListResult)
     }
 
     companion object {

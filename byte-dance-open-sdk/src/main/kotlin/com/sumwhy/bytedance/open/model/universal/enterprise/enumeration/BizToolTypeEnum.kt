@@ -30,7 +30,7 @@ enum class BizToolTypeEnum(val bizToolType: Int) {
     /**
      * 联系我们落地页
      */
-    CONTACT_US(1),
+    CONTACT_US(3),
 
     /**
      * 官网主页落地页

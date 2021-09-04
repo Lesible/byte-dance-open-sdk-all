@@ -23,7 +23,7 @@ enum class BindTypeEnum(val bindType: Int) {
     UNBOUND(0),
 
     /**
-     *立即绑定
+     * 立即绑定
      */
     BOUND(1),
 

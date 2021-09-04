@@ -3,9 +3,11 @@ package com.sumwhy.bytedance.open.client
 import com.sumwhy.bytedance.open.api.EnterpriseApi
 import com.sumwhy.bytedance.open.model.req.enterprise.BizToolBindItemReq
 import com.sumwhy.bytedance.open.model.req.enterprise.BizToolListReq
+import com.sumwhy.bytedance.open.model.req.enterprise.LeadsUserListReq
 import com.sumwhy.bytedance.open.model.resp.EnterpriseRet
 import com.sumwhy.bytedance.open.model.resp.enterprise.BizToolListResult
 import com.sumwhy.bytedance.open.model.resp.enterprise.ItemBindBizToolListResult
+import com.sumwhy.bytedance.open.model.resp.enterprise.LeadsUserListResult
 
 /**
  * <p> 企业号接口请求客户端 </p>
@@ -57,6 +59,17 @@ class EnterpriseClient(private val enterpriseApi: EnterpriseApi) {
         val itemIdListStr = itemIdList.joinToString(separator = ",") { it }
         val bindListResult = enterpriseApi.listItemBindBizTool(accessToken, openId, itemIdListStr).execute()
         return if (bindListResult.isSuccessful) bindListResult.body() else null
+    }
+
+    /**
+     * 查询企业号意向用户列表
+     *
+     * @param leadsUserListReq 已向用户列表参数
+     * @return 意向用户列表返回结果
+     */
+    fun listLeadsUser(leadsUserListReq: LeadsUserListReq): EnterpriseRet<LeadsUserListResult>? {
+        val leadsUserListResult = enterpriseApi.listLeadsUser(leadsUserListReq.toParamMap()).execute()
+        return if (leadsUserListResult.isSuccessful) leadsUserListResult.body() else null
     }
 
 }

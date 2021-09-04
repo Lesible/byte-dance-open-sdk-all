@@ -8,10 +8,29 @@ import com.sumwhy.bytedance.open.model.universal.enterprise.enumeration.BizToolT
  * @author 何嘉豪
  */
 class BizToolListReq(
+    /**
+     * 请求凭证
+     */
     private val accessToken: String,
+
+    /**
+     * 用户唯一标识
+     */
     private val openId: String,
+
+    /**
+     * 当前页码 从 0 开始
+     */
     private val page: Int,
+
+    /**
+     * 每页大小
+     */
     private val pageSize: Int,
+
+    /**
+     * 营销工具类型
+     */
     private val toolType: BizToolTypeEnum,
 ) {
     fun toParamMap() = mapOf(

@@ -2,6 +2,7 @@ package com.sumwhy.bytedance.open.api
 
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
 import com.sumwhy.bytedance.open.model.resp.data.user.*
+import com.sumwhy.bytedance.open.model.resp.data.video.VideoBaseResult
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.QueryMap
@@ -53,7 +54,7 @@ interface DataApi {
      * 获取用户视频基本信息
      */
     @GET("data/external/item/base/")
-    fun getItemBase(@QueryMap queryMap: Map<String, String>): Call<String>
+    fun getItemBase(@QueryMap queryMap: Map<String, String>): Call<ByteDanceResp<VideoBaseResult>>
 
     /**
      * 获取用户视频播放信息

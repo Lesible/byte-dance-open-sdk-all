@@ -4,6 +4,7 @@ import com.sumwhy.bytedance.open.model.req.enterprise.BizToolBindItemReq
 import com.sumwhy.bytedance.open.model.resp.EnterpriseRet
 import com.sumwhy.bytedance.open.model.resp.enterprise.BizToolListResult
 import com.sumwhy.bytedance.open.model.resp.enterprise.ItemBindBizToolListResult
+import com.sumwhy.bytedance.open.model.resp.enterprise.LeadsUserListResult
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -39,5 +40,11 @@ interface EnterpriseApi {
         @Query("open_id") openId: String,
         @Query("item_id_list") itemIdList: String,
     ): Call<EnterpriseRet<ItemBindBizToolListResult>>
+
+    /**
+     * 查询企业号意向用户列表
+     */
+    @GET("enterprise/v1/leads/user/list/")
+    fun listLeadsUser(@QueryMap queryMap: Map<String, String>): Call<EnterpriseRet<LeadsUserListResult>>
 
 }
