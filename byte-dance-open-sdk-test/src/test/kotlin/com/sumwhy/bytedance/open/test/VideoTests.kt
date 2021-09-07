@@ -52,7 +52,10 @@ class VideoTests {
             "act.9ccd30d4b98e1d0938c2b9156bb0b74efHuhXSDN6LYgqsJYbRZdHViCpbRA", 10
         ).build()
         val listVideo = videoClient.listVideo(universalListParam)
-        listVideo?.data?.list?.forEach { println(it.itemId) }
+        listVideo?.data?.list?.forEach {
+            println(it.title)
+            println(it.itemId)
+        }
         log.info("listVideo:{}", listVideo)
     }
 

@@ -41,7 +41,7 @@ class OpenApiFactory(private val clientProp: ByteDanceOpenSdkClientProperties) {
             .callTimeout(okHttpProp.callTimeout).connectionPool(pool)
             .retryOnConnectionFailure(okHttpProp.retryOnConnectionFailure)
         // 排查问题可以打开日志
-        if (clientProp.enableHttpLogging) {
+        if (clientProp.logEnable) {
             val loggingInterceptor = HttpLoggingInterceptor()
             loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
             okHttpBuilder.addInterceptor(loggingInterceptor)

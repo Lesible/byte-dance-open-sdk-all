@@ -13,6 +13,6 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty
 data class ByteDanceOpenSdkClientProperties(
     val key: String,
     val secret: String,
-    val enableHttpLogging: Boolean = false,
+    val logEnable: Boolean = false,
     @NestedConfigurationProperty val okHttp: OkHttpProperties = OkHttpProperties(),
 )

@@ -27,6 +27,12 @@ class AuthTests {
         log.info("refreshToken:{}", refreshToken)
     }
 
+    @Test
+    fun clientToken() {
+        val clientToken = oauthClient.clientToken()
+        log.info("clientToken:{}", clientToken)
+    }
+
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
     }

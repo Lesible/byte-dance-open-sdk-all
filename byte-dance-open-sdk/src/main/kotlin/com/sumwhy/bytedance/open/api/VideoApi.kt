@@ -4,6 +4,8 @@ import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
 import com.sumwhy.bytedance.open.model.resp.video.ListVideoResult
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 /**
@@ -12,6 +14,12 @@ import retrofit2.http.QueryMap
  * @author 何嘉豪
  */
 interface VideoApi {
+
+    @POST("video/upload/")
+    fun uploadVideo(
+        @Query("open_id") openId: String,
+        @Query("access_token") accessToken: String,
+    )
 
     /**
      * 查询用户视频列表

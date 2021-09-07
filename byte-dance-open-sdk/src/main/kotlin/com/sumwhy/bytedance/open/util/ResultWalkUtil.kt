@@ -29,7 +29,7 @@ class ResultWalkUtil {
      * @param initParam 初始化传参
      * @param nextParamProducer 根据结果构造新的传参
      */
-    private fun <P, R> walk(
+    fun <P, R> walk(
         resultProducer: (P) -> R?, resultConsumer: (R?) -> Unit,
         breakPredicate: (R?) -> Boolean, initParam: P, nextParamProducer: (R?) -> P,
     ) {
@@ -48,6 +48,7 @@ class ResultWalkUtil {
 
     /**
      * 遍历视频信息
+     *
      * @param breakPredicate 根据结果来停止递归的断言
      * @param resultConsumer 结果消费者,业务
      * @param initParam 初始化参数

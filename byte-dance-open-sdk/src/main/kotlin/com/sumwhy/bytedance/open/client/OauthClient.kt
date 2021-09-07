@@ -2,6 +2,7 @@ package com.sumwhy.bytedance.open.client
 
 import com.sumwhy.bytedance.open.api.OauthApi
 import com.sumwhy.bytedance.open.common.OpenCredentials
+import com.sumwhy.bytedance.open.model.resp.LarkOauthResult
 import com.sumwhy.bytedance.open.model.resp.oauth.ByteDanceOauthResult
 
 /**
@@ -19,7 +20,7 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
      */
     @JvmOverloads
     fun refreshToken(clientKey: String = openCredentials.key, refreshToken: String): ByteDanceOauthResult? {
-        val queryMap = mutableMapOf(
+        val queryMap = mapOf(
             "grant_type" to "refresh_token",
             "client_key" to clientKey,
             "refresh_token" to refreshToken)
@@ -36,10 +37,50 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
      */
     @JvmOverloads
     fun renewRefreshToken(clientKey: String = openCredentials.key, refreshToken: String): ByteDanceOauthResult? {
-        val queryMap = mutableMapOf(
+        val queryMap = mapOf(
             "client_key" to clientKey,
             "refresh_token" to refreshToken)
         val execute = oauthApi.renewRefreshToken(queryMap).execute()
+        return if (execute.isSuccessful) execute.body() else null
+    }
+
+    /**
+     * 获取 clientToken
+     *
+     * @param clientKey clientKey 默认取配置文件配置
+     * @param clientSecret clientSecret 默认取配置文件配置
+     * @return 字节开放平台授权结果 nullable
+     */
+    @JvmOverloads
+    fun clientToken(
+        clientKey: String = openCredentials.key,
+        clientSecret: String = openCredentials.secret,
+    ): ByteDanceOauthResult? {
+        val queryMap = mapOf(
+            "grant_type" to "client_credential",
+            "client_key" to clientKey,
+            "client_secret" to clientSecret)
+        val execute = oauthApi.clientToken(queryMap).execute()
+        return if (execute.isSuccessful) execute.body() else null
+    }
+
+
+    /**
+     * 飞书授权,用于小程序端
+     *
+     * @param larkCode 飞书授权码
+     * @param clientToken 抖开 clientToken
+     * @param larkAccessToken 飞书请求凭证
+     * @return 飞书授权结果
+     */
+    fun larkAppOauth(larkCode: String, clientToken: String, larkAccessToken: String): LarkOauthResult? {
+        val queryMap = mapOf(
+            "lark_code" to larkCode,
+            "access_token" to clientToken,
+            "lark_access_type" to "app",
+            "lark_access_token" to larkAccessToken
+        )
+        val execute = oauthApi.larkOauth(queryMap).execute()
         return if (execute.isSuccessful) execute.body() else null
     }
 
