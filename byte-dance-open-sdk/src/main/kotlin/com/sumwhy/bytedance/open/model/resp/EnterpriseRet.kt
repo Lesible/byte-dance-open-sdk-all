@@ -39,4 +39,7 @@ data class BaseInfo(
      * 业务状态信息
      */
     val bizMsg: String,
-)
+
+    ) {
+    fun isSuccessful() = (0 == gatewayCode && 0 == bizCode)
+}

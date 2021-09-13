@@ -2,8 +2,10 @@ package com.sumwhy.bytedance.open.client
 
 import com.sumwhy.bytedance.open.api.OauthApi
 import com.sumwhy.bytedance.open.common.OpenCredentials
+import com.sumwhy.bytedance.open.model.req.oauth.LarkOauthReq
 import com.sumwhy.bytedance.open.model.resp.LarkOauthResult
 import com.sumwhy.bytedance.open.model.resp.oauth.ByteDanceOauthResult
+import com.sumwhy.bytedance.open.model.resp.oauth.RefreshTokenResult
 
 /**
  * <p> @date: 2021-07-28 11:35</p>
@@ -19,7 +21,10 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
      * @return 字节开放平台授权结果 nullable
      */
     @JvmOverloads
-    fun refreshToken(clientKey: String = openCredentials.key, refreshToken: String): ByteDanceOauthResult? {
+    fun refreshToken(
+        clientKey: String = openCredentials.key,
+        refreshToken: String,
+    ): ByteDanceOauthResult<RefreshTokenResult>? {
         val queryMap = mapOf(
             "grant_type" to "refresh_token",
             "client_key" to clientKey,
@@ -36,7 +41,10 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
      * @return 字节开放平台授权结果 nullable
      */
     @JvmOverloads
-    fun renewRefreshToken(clientKey: String = openCredentials.key, refreshToken: String): ByteDanceOauthResult? {
+    fun renewRefreshToken(
+        clientKey: String = openCredentials.key,
+        refreshToken: String,
+    ): ByteDanceOauthResult<RefreshTokenResult>? {
         val queryMap = mapOf(
             "client_key" to clientKey,
             "refresh_token" to refreshToken)
@@ -55,7 +63,7 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
     fun clientToken(
         clientKey: String = openCredentials.key,
         clientSecret: String = openCredentials.secret,
-    ): ByteDanceOauthResult? {
+    ): ByteDanceOauthResult<RefreshTokenResult>? {
         val queryMap = mapOf(
             "grant_type" to "client_credential",
             "client_key" to clientKey,
@@ -74,13 +82,8 @@ class OauthClient(private val oauthApi: OauthApi, private val openCredentials: O
      * @return 飞书授权结果
      */
     fun larkAppOauth(larkCode: String, clientToken: String, larkAccessToken: String): LarkOauthResult? {
-        val queryMap = mapOf(
-            "lark_code" to larkCode,
-            "access_token" to clientToken,
-            "lark_access_type" to "app",
-            "lark_access_token" to larkAccessToken
-        )
-        val execute = oauthApi.larkOauth(queryMap).execute()
+        val larkOauthReq = LarkOauthReq.builder(larkCode, clientToken, "app", larkAccessToken).build()
+        val execute = oauthApi.larkOauth(larkOauthReq.toParamMap()).execute()
         return if (execute.isSuccessful) execute.body() else null
     }
 

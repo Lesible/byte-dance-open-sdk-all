@@ -33,6 +33,14 @@ class AuthTests {
         log.info("clientToken:{}", clientToken)
     }
 
+    @Test
+    fun larkOauth() {
+        val larkAppOauth = oauthClient.larkAppOauth("1771de8710d3ce02",
+            "clt.0794fcb419f390bd5488ac6c0c64aba5vhknlOmJjbpslBkRTpl789oa02su",
+            "a-65ea2322cf5b0cb3f1585a1715c8774b0f8e29fa")
+        log.info("larkAppOauth:{}", larkAppOauth)
+    }
+
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
     }

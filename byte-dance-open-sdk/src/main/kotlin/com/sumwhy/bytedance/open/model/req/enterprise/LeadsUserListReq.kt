@@ -65,6 +65,22 @@ class LeadsUserListReq private constructor(builder: Builder) {
         return map.toMap()
     }
 
+    fun clone(page: Int): LeadsUserListReq {
+        val builder = builder(
+            this.accessToken,
+            this.openId,
+            this.appointmentTypeList,
+            this.startTime,
+            this.endTime,
+            page,
+            this.pageSize
+        )
+        if (this.referUserIds != null) {
+            builder.referUserIds(referUserIds)
+        }
+        return LeadsUserListReq(builder)
+    }
+
     companion object {
 
         @JvmStatic

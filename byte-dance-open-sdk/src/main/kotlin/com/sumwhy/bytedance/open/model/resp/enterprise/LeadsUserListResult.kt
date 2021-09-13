@@ -126,7 +126,23 @@ data class UserInfo(
      * 客户来源-角色
      */
     val referUserRole: String? = null,
-)
+
+    /**
+     * 客户来源-uid
+     */
+    val referUserId: String? = null,
+
+    /**
+     * 城市编码
+     */
+    val cityCode: String? = null,
+
+    /**
+     * 年龄
+     */
+    val age: String? = null,
+
+    )
 
 data class Tag(
 

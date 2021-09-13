@@ -48,8 +48,8 @@ class VideoTests {
     @Test
     fun listVideo() {
         val universalListParam = UniversalListParam.builder(
-            "0b5ddea1-b6d0-49b0-a273-27b56c66b3b6",
-            "act.9ccd30d4b98e1d0938c2b9156bb0b74efHuhXSDN6LYgqsJYbRZdHViCpbRA", 10
+            "4fbf142a-104f-41dc-8fc3-6959042e2923",
+            "act.d80bd55f6d3b93e78788bf7c0583e72bUJAIjukO6Bx13HFoKivA9Mp8zrSv", 10
         ).build()
         val listVideo = videoClient.listVideo(universalListParam)
         listVideo?.data?.list?.forEach {

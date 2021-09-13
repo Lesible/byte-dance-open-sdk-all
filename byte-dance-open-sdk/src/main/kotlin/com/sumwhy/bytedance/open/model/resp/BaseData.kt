@@ -19,4 +19,9 @@ open class BaseData(
     open val description: String,
 ) {
     fun isSuccessful() = ErrorCode.SUCCESS.errorCode == errorCode
+
+    override fun toString(): String {
+        return "BaseData(errorCode=$errorCode, description='$description')"
+    }
+
 }

@@ -32,7 +32,6 @@ class SpuAttribute {
     @JsonProperty("9101")
     var grouponProduct: GrouponProduct? = null
 
-
 }
 
 class GrouponProduct {
@@ -103,6 +102,11 @@ class GrouponProduct {
     var orderValidStart: String? = null
 
     /**
+     * 券有效期结束
+     */
+    var orderValidEnd: String? = null
+
+    /**
      * 商家客服电话，最多传3个
      */
     var servicePhone: List<String>? = null
@@ -116,7 +120,6 @@ class GrouponProduct {
      * 团购售卖时间开始
      */
     var grouponValidStart: String? = null
-
 
 }
 
