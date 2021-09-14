@@ -1,5 +1,8 @@
 byte-dance:
   open:
-    key: test
-    secret: test
-    enable-http-logging: true
+    key: aw8g9evji0w5vfha
+    secret: c6cb5812489a9b8e16278c374c6b7c7a
+    log-enable: on
+logging:
+  file:
+    path: /users/lesible/logs/byte-dance-open-sdk/sdk.log
