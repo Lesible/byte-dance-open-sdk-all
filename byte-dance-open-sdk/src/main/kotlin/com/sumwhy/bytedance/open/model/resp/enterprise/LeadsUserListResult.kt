@@ -7,22 +7,22 @@ data class LeadsUserListResult(
     /**
      * 总个数
      */
-    val totalCount: Int,
+    val totalCount: Int?,
 
     /**
      * 总页数
      */
-    val totalPage: Int,
+    val totalPage: Int?,
 
     /**
      * 当前页码
      */
-    val page: Int,
+    val page: Int?,
 
     /**
      * 用户列表
      */
-    val userList: List<UserInfo>,
+    val userList: List<UserInfo>?,
 )
 
 data class UserInfo(

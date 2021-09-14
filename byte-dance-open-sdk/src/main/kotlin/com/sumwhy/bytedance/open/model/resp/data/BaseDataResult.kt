@@ -1,4 +1,4 @@
-package com.sumwhy.bytedance.open.model.resp.data.user
+package com.sumwhy.bytedance.open.model.resp.data
 
 import com.sumwhy.bytedance.open.model.resp.BaseData
 
@@ -7,7 +7,7 @@ import com.sumwhy.bytedance.open.model.resp.BaseData
  * <p> create 2021-08-06 10:41 by lesible </p>
  * @author 何嘉豪
  */
-data class UserDataResult<T>(
+data class BaseDataResult<T>(
     /**
      * 结果集
      */

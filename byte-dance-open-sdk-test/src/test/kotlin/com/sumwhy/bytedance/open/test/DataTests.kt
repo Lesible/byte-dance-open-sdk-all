@@ -20,6 +20,12 @@ class DataTests {
         log.info("itemBase: {}", itemBase)
     }
 
+    @Test
+    fun videoPlayInfo() {
+        val itemPlay = dataVideoClient.getItemPlay(VideoDataParam(ITEM_ID, 7, OPEN_ID, ACCESS_TOKEN))
+        log.info("itemBase: {}", itemPlay)
+    }
+
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
         const val ACCESS_TOKEN = "act.9ccd30d4b98e1d0938c2b9156bb0b74efHuhXSDN6LYgqsJYbRZdHViCpbRA"
