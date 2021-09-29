@@ -3,6 +3,7 @@ package com.sumwhy.bytedance.open.client
 import com.sumwhy.bytedance.open.api.LifeOpenApi
 import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
+import com.sumwhy.bytedance.open.model.resp.poi.PoiResp
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.*
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.SyncSupplier
 
@@ -85,7 +86,7 @@ class PoiSupplierClient(private val lifeOpenApi: LifeOpenApi) {
      * @return 同步店铺结果
      */
     fun syncSupplierMatch(accessToken: String, supplierMatchReq: SupplierMatchReq)
-            : ByteDanceResp<SupplierMatchSyncResult>? {
+            : PoiResp<SupplierMatchSyncResult>? {
         val syncResult = lifeOpenApi.syncSupplierMatch(accessToken, supplierMatchReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }

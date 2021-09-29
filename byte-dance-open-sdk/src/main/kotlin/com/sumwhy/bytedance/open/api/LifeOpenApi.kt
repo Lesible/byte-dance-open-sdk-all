@@ -5,6 +5,7 @@ import com.sumwhy.bytedance.open.model.req.poi.product.*
 import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
 import com.sumwhy.bytedance.open.model.resp.BaseData
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
+import com.sumwhy.bytedance.open.model.resp.poi.PoiResp
 import com.sumwhy.bytedance.open.model.resp.poi.order.*
 import com.sumwhy.bytedance.open.model.resp.poi.product.*
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.*
@@ -74,7 +75,7 @@ interface LifeOpenApi {
     fun syncSupplierMatch(
         @Query("access_token") accessToken: String,
         @Body supplierMatchReq: SupplierMatchReq,
-    ): Call<ByteDanceResp<SupplierMatchSyncResult>>
+    ): Call<PoiResp<SupplierMatchSyncResult>>
 
     /**
      * 同步商品 sku

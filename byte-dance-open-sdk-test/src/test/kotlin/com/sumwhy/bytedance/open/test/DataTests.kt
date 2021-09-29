@@ -1,6 +1,8 @@
 package com.sumwhy.bytedance.open.test
 
+import com.sumwhy.bytedance.open.client.DataUserClient
 import com.sumwhy.bytedance.open.client.DataVideoClient
+import com.sumwhy.bytedance.open.model.req.data.external.UserDataParam
 import com.sumwhy.bytedance.open.model.req.data.external.VideoDataParam
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -14,9 +16,18 @@ class DataTests {
     @Resource
     lateinit var dataVideoClient: DataVideoClient
 
+    @Resource
+    lateinit var dataUserClient: DataUserClient
+
     @Test
     fun videoBaseInfo() {
         val itemBase = dataVideoClient.getItemBase(VideoDataParam(ITEM_ID, 7, OPEN_ID, ACCESS_TOKEN))
+        log.info("itemBase: {}", itemBase)
+    }
+
+    @Test
+    fun userFansInfo() {
+        val itemBase = dataUserClient.getUserFans(UserDataParam( 7, OPEN_ID, ACCESS_TOKEN))
         log.info("itemBase: {}", itemBase)
     }
 
