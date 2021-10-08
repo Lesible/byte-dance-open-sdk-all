@@ -10,27 +10,27 @@ class SpuInfoSyncReq private constructor(builder: Builder) {
     /**
      * 调用/oauth/client_token/生成的token，此token不需要用户授权。
      */
-    val accessToken = builder.accessToken
+    private val accessToken = builder.accessToken
 
     /**
      * 第三方SPU
      */
-    val spuExtId = builder.spuExtId
+    private val spuExtId = builder.spuExtId
 
     /**
      * 是否需要商品草稿数据(带有商品的审核状态，只展示最近30天的数据，并且最多最近提交的20次内)
      */
-    val needSpuDraft = builder.needSpuDraft
+    private val needSpuDraft = builder.needSpuDraft
 
     /**
      * 需要商品草稿数据的数目(0-20)，超过这个范围默认返回20个
      */
-    val spuDraftCount = builder.spuDraftCount
+    private val spuDraftCount = builder.spuDraftCount
 
     /**
      * 供应商id列表，需要商品在某供应商下的过滤状态
      */
-    val supplierIdsForFilterReason = builder.supplierIdsForFilterReason
+    private val supplierIdsForFilterReason = builder.supplierIdsForFilterReason
 
     companion object {
 
