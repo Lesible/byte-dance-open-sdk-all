@@ -78,7 +78,7 @@ data class SpuDraft(
     /**
      * spu_id
      */
-    val spuId: Int?,
+    val spuId: Long?,
 
     /**
      * 状态：0-审核中，1-上架，2-下架，3-审核拒绝
@@ -213,7 +213,7 @@ data class SpuDetail(
     /**
      * spu_id
      */
-    val spuId: Int?,
+    val spuId: Long?,
 
     /**
      * 状态：0-审核中，1-上架，2-下架，3-审核拒绝

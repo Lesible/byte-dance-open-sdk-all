@@ -113,7 +113,7 @@ interface LifeOpenApi {
     /**
      * 多门店 spu 信息同步
      */
-    @POST("poi/v2/spu/get/")
+    @GET("poi/v2/spu/get/")
     fun syncSpuInfo(
         @QueryMap map: Map<String, String>,
     ): Call<PoiResp<SpuInfoSyncResult>>

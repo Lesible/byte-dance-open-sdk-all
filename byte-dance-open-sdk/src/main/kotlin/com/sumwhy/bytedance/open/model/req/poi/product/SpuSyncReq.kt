@@ -202,7 +202,7 @@ class EntryInfo(
     /**
      * 入口链接
      */
-    val entryUrl: String,
+    val entryUrl: String?,
 )
 
 class Highlight(
