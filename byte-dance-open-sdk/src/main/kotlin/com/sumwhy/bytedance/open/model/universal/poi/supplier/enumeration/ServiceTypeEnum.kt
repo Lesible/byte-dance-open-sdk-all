@@ -38,7 +38,7 @@ enum class ServiceTypeEnum(private val serviceType: Int) {
     /**
      * 门票预定服务
      */
-    BOOKING_TICKET(204),
+    BOOKING_TICKET(9001),
 
     /**
      * 团购套餐服务

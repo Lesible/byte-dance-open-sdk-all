@@ -76,6 +76,11 @@ class SyncSupplier {
     var contactTel: String? = null
 
     /**
+     * 商家资质信息
+     */
+    var customerInfo: CustomerInfo? = null
+
+    /**
      * 店铺名称
      */
     var name: String? = null
@@ -136,8 +141,8 @@ class SyncSupplier {
         this.description = builder.description
         this.images = builder.images
         this.openTime = builder.openTime
+        this.customerInfo = builder.customerInfo
     }
-
 
     companion object {
 
@@ -171,6 +176,7 @@ class SyncSupplier {
         var description: String? = null
         var images: List<String>? = null
         var openTime: List<String>? = null
+        var customerInfo: CustomerInfo? = null
 
         fun typeCode(typeCode: String): Builder {
             this.typeCode = typeCode
@@ -242,6 +248,10 @@ class SyncSupplier {
             return this
         }
 
+        fun customerInfo(customerInfo: CustomerInfo): Builder {
+            this.customerInfo = customerInfo
+            return this
+        }
 
         fun build() = SyncSupplier(this)
     }

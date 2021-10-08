@@ -1,5 +1,6 @@
 package com.sumwhy.bytedance.open.model.req.poi.product
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import com.sumwhy.bytedance.open.model.universal.poi.product.SpuAttribute
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.EntryMiniApp
 import com.sumwhy.bytedance.open.model.universal.poi.supplier.enumeration.EntryTypeEnum
@@ -185,23 +186,24 @@ class SpuSyncReq private constructor(builder: Builder) {
     }
 }
 
-class EntryInfo {
+class EntryInfo(
     /**
      * 小程序入口参数
      */
-    val entryMiniApp: EntryMiniApp? = null
+    @field:JsonProperty("entry_miniApp")
+    val entryMiniApp: EntryMiniApp,
 
     /**
      * 入口类型(1:H5，2:抖音小程序，3:抖音链接)
      */
-    val entryType: EntryTypeEnum? = null
+    val entryType: EntryTypeEnum,
 
 
     /**
      * 入口链接
      */
-    val entryUrl: String? = null
-}
+    val entryUrl: String,
+)
 
 class Highlight(
 

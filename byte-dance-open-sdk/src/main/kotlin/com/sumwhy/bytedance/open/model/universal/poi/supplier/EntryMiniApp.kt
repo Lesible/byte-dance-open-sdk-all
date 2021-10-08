@@ -38,19 +38,25 @@ class EntryMiniApp {
     companion object {
 
         @JvmStatic
-        fun builder(params: String, path: String, appId: String) = Builder(params, path, appId)
+        fun builder(path: String, appId: String) = Builder(path, appId)
     }
 
     class Builder internal constructor(
-        val params: String,
         val path: String,
-        val appId: String
+        val appId: String,
     ) {
 
         var isTest: Int? = null
 
+        var params: String? = null
+
         fun isTest(isTest: Int): Builder {
             this.isTest = isTest
+            return this
+        }
+
+        fun params(params: String): Builder {
+            this.params = params
             return this
         }
 

@@ -3,7 +3,7 @@ package com.sumwhy.bytedance.open.client
 import com.sumwhy.bytedance.open.api.LifeOpenApi
 import com.sumwhy.bytedance.open.model.req.poi.product.*
 import com.sumwhy.bytedance.open.model.resp.BaseData
-import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
+import com.sumwhy.bytedance.open.model.resp.poi.PoiResp
 import com.sumwhy.bytedance.open.model.resp.poi.product.*
 
 /**
@@ -20,7 +20,7 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
      * @param skuSyncReq sku 同步请求
      * @return 商品数据同步结果
      */
-    fun syncSku(accessToken: String, skuSyncReq: SkuSyncReq): ByteDanceResp<BaseData>? {
+    fun syncSku(accessToken: String, skuSyncReq: SkuSyncReq): PoiResp<BaseData>? {
         val syncResult = lifeOpenApi.syncSku(accessToken, skuSyncReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
@@ -31,7 +31,7 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
      * @param spuSyncReq spu 同步请求
      * @return 商品 spu 同步结果
      */
-    fun syncSpu(accessToken: String, spuSyncReq: SpuSyncReq): ByteDanceResp<SpuSyncResult>? {
+    fun syncSpu(accessToken: String, spuSyncReq: SpuSyncReq): PoiResp<SpuSyncResult>? {
         val syncResult = lifeOpenApi.syncSpu(accessToken, spuSyncReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
@@ -45,7 +45,7 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
     fun syncSpuStatus(
         accessToken: String,
         spuStatusSyncReq: SpuStatusSyncReq,
-    ): ByteDanceResp<SpuStatusSyncResult>? {
+    ): PoiResp<SpuStatusSyncResult>? {
         val syncResult = lifeOpenApi.syncSpuStatus(accessToken, spuStatusSyncReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
@@ -59,7 +59,7 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
      */
     fun syncSpuStock(
         accessToken: String, spuStockSyncReq: SpuStockSyncReq,
-    ): ByteDanceResp<SpuStockSyncResult>? {
+    ): PoiResp<SpuStockSyncResult>? {
         val syncResult = lifeOpenApi.syncSpuStock(accessToken, spuStockSyncReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
@@ -67,12 +67,11 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
     /**
      * 多门店 spu 信息同步
      *
-     * @param accessToken 调用凭证
      * @param spuInfoSyncReq spu 信息同步请求
      * @return 商品 spu 信息同步结果
      */
-    fun syncSpuInfo(accessToken: String, spuInfoSyncReq: SpuInfoSyncReq): ByteDanceResp<SpuInfoSyncResult>? {
-        val syncResult = lifeOpenApi.syncSpuInfo(accessToken, spuInfoSyncReq).execute()
+    fun syncSpuInfo(spuInfoSyncReq: SpuInfoSyncReq): PoiResp<SpuInfoSyncResult>? {
+        val syncResult = lifeOpenApi.syncSpuInfo(spuInfoSyncReq.toParamMap()).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }
 
@@ -86,7 +85,7 @@ class PoiProductClient(private val lifeOpenApi: LifeOpenApi) {
     fun syncSpuTakeRate(
         accessToken: String,
         spuTakeRateSyncReq: SpuTakeRateSyncReq,
-    ): ByteDanceResp<SpuTakeRateSyncResult>? {
+    ): PoiResp<SpuTakeRateSyncResult>? {
         val syncResult = lifeOpenApi.syncSpuTakeRate(accessToken, spuTakeRateSyncReq).execute()
         return if (syncResult.isSuccessful) syncResult.body() else null
     }

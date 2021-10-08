@@ -43,6 +43,22 @@ class SpuInfoSyncReq private constructor(builder: Builder) {
 
     }
 
+    fun toParamMap(): Map<String, String> {
+        val paramMap = mutableMapOf(
+            "access_token" to accessToken,
+            "spu_ext_id" to spuExtId,
+            "need_spu_draft" to needSpuDraft.toString()
+        )
+        if (spuDraftCount != null) {
+            paramMap["spu_draft_count"] = spuDraftCount.toString()
+        }
+        if (supplierIdsForFilterReason != null) {
+            paramMap["supplier_ids_for_filter_reason"] =
+                supplierIdsForFilterReason.joinToString(prefix = "[", postfix = "]")
+        }
+        return paramMap.toMap()
+    }
+
     class Builder(
         val accessToken: String,
         val spuExtId: String,
