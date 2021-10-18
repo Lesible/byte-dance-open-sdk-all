@@ -32,6 +32,7 @@ enum class BindTypeEnum(val bindType: Int) {
      */
     PRE_BOUND(2);
 
+    fun getValue() = this.bindType
 
     companion object {
         fun getEnumByInnerValue(bindType: Int?) =

@@ -30,6 +30,8 @@ enum class EntryTypeEnum(private val entryType: Int) {
      */
     MINI_APP(2);
 
+    fun getValue() = this.entryType
+
     companion object {
 
         fun getEnumByInnerValue(entryType: Int?) = values().find { it.entryType == entryType }

@@ -42,6 +42,8 @@ enum class BizToolStatusEnum(private val bizToolStatus: Int) {
      */
     DRAFTED(3);
 
+    fun getValue() = this.bizToolStatus
+
     companion object {
         fun getEnumByInnerValue(bizToolStatus: Int?) =
             values().find { it.bizToolStatus == bizToolStatus }

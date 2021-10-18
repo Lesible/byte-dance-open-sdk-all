@@ -40,6 +40,8 @@ enum class SpuTypeEnum(private val spuType: Int) {
      */
     GROUPON_COUPON(91);
 
+    fun getValue() = this.spuType
+
     companion object {
 
         fun getEnumByInnerValue(spuType: Int?) = values().find { it.spuType == spuType }

@@ -34,6 +34,8 @@ enum class BreakfastTypeEnum(private val breakfastType: Int) {
      */
     BUFFET(2);
 
+    fun getValue() = this.breakfastType
+
     companion object {
         fun getEnumByInnerValue(breakfastType: Int?) = values().find { it.breakfastType == breakfastType }
     }

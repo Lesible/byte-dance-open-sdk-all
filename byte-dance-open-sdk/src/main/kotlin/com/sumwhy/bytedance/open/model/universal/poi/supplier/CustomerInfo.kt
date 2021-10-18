@@ -30,22 +30,30 @@ class CustomerInfo constructor(builder: Builder) {
     companion object {
 
         @JvmStatic
-        fun builder(
-            businessLicense: CompanyExtInfo,
-            powerOfAttorney: ExtInfo,
-            industryLicense: List<ExtInfo>,
-        ) =
-            Builder(businessLicense, powerOfAttorney, industryLicense)
+        fun builder() = Builder()
 
     }
 
-    class Builder internal constructor(
-        val businessLicense: CompanyExtInfo,
-        val powerOfAttorney: ExtInfo,
-        val industryLicense: List<ExtInfo>,
-    ) {
-
+    class Builder internal constructor() {
+        var businessLicense: CompanyExtInfo? = null
+        var powerOfAttorney: ExtInfo? = null
+        var industryLicense: List<ExtInfo>? = null
         var otherInfo: List<ExtInfo>? = null
+
+        fun businessLicense(businessLicense: CompanyExtInfo): Builder {
+            this.businessLicense = businessLicense
+            return this
+        }
+
+        fun powerOfAttorney(powerOfAttorney: ExtInfo): Builder {
+            this.powerOfAttorney = powerOfAttorney
+            return this
+        }
+
+        fun industryLicense(industryLicense: List<ExtInfo>): Builder {
+            this.industryLicense = industryLicense
+            return this
+        }
 
         fun otherInfo(otherInfo: List<ExtInfo>): Builder {
             this.otherInfo = otherInfo

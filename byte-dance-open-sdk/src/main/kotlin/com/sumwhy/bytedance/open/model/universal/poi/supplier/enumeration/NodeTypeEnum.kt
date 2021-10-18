@@ -30,6 +30,8 @@ enum class NodeTypeEnum(private val nodeType: Int) {
      */
     IMAGE(2);
 
+    fun getValue() = this.nodeType
+
     companion object {
 
         fun getEnumByInnerValue(nodeType: Int?) = values().find { it.nodeType == nodeType }

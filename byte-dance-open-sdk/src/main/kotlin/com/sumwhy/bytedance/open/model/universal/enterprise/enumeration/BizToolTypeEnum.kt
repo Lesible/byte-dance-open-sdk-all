@@ -52,6 +52,8 @@ enum class BizToolTypeEnum(val bizToolType: Int) {
      */
     INDUSTRY_TOOL(7);
 
+    fun getValue() = this.bizToolType
+
     companion object {
         fun getEnumByInnerValue(bizToolType: Int?) =
             values().find { it.bizToolType == bizToolType }

@@ -44,6 +44,7 @@ enum class AppointmentTypeEnum(val appointmentType: Int) {
      */
     APPOINTMENT_TYPE_INDUSTRY_COMPONENT_RESERVED(5);
 
+    fun getValue() = this.appointmentType
 
     companion object {
         fun getEnumByInnerValue(appointmentType: Int?) =

@@ -30,6 +30,8 @@ enum class OnlineStatusEnum(private val onlineStatus: Int) {
      */
     OFFLINE_STATUS(2);
 
+    fun getValue() = this.onlineStatus
+
     companion object {
 
         fun getEnumByInnerValue(onlineStatus: Int?) = values().find { it.onlineStatus == onlineStatus }

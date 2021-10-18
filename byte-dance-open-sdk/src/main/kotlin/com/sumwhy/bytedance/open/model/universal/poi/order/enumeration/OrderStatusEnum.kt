@@ -39,6 +39,8 @@ enum class OrderStatusEnum(private val orderStatus: Int) {
      */
     ORDER_CONFIRMING(3);
 
+    fun getValue() = this.orderStatus
+
     companion object {
 
         fun getEnumByInnerValue(orderStatus: Int?) = values().find { it.orderStatus == orderStatus }

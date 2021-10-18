@@ -70,6 +70,8 @@ enum class ServiceTypeEnum(private val serviceType: Int) {
      */
     APPOINT_COUPON(200);
 
+    fun getValue() = this.serviceType
+
     companion object {
 
         fun getEnumByInnerValue(serviceType: Int?) = values().find { it.serviceType == serviceType }

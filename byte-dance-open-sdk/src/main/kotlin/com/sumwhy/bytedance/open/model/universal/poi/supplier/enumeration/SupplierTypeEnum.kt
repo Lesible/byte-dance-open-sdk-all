@@ -80,6 +80,8 @@ enum class SupplierTypeEnum(private val supplierType: Int) {
      */
     PRINT_SERVICE(12);
 
+    fun getValue() = this.supplierType
+
     companion object {
 
         fun getEnumByInnerValue(supplierType: Int?) = values().find { it.supplierType == supplierType }

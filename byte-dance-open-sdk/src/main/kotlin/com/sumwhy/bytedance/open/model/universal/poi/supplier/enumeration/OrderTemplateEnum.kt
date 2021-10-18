@@ -30,6 +30,8 @@ enum class OrderTemplateEnum(private val orderTemplateType: Int) {
      */
     ABOARD_TEMPLATE(2);
 
+    fun getValue() = this.orderTemplateType
+
     companion object {
 
         fun getEnumByInnerValue(orderTemplateType: Int?) = values().find { it.orderTemplateType == orderTemplateType }

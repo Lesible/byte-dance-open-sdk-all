@@ -70,6 +70,8 @@ enum class OrderTypeEnum(private val orderType: Int) {
      */
     APPOINT_COUPON(200);
 
+    fun getValue() = this.orderType
+
     companion object {
 
         fun getEnumByInnerValue(orderType: Int?) = values().find { it.orderType == orderType }
