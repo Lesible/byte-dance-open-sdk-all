@@ -4,6 +4,7 @@ import com.sumwhy.bytedance.open.api.OauthApi
 import com.sumwhy.bytedance.open.common.OpenCredentials
 import com.sumwhy.bytedance.open.model.req.oauth.LarkOauthReq
 import com.sumwhy.bytedance.open.model.resp.LarkOauthResult
+import com.sumwhy.bytedance.open.model.resp.oauth.AccessTokenResult
 import com.sumwhy.bytedance.open.model.resp.oauth.ByteDanceOauthResult
 import com.sumwhy.bytedance.open.model.resp.oauth.RefreshTokenResult
 
@@ -12,6 +13,29 @@ import com.sumwhy.bytedance.open.model.resp.oauth.RefreshTokenResult
  * @author 何嘉豪
  */
 class OauthClient(private val oauthApi: OauthApi, private val openCredentials: OpenCredentials) {
+
+    /**
+     * 获取 accessToken
+     *
+     * @param code 授权用 code
+     * @param clientKey clientKey 默认取配置文件配置
+     * @param clientSecret clientSecret 默认取配置文件配置
+     * @return 字节开放平台授权结果 nullable
+     */
+    @JvmOverloads
+    fun accessToken(
+        code: String,
+        clientKey: String = openCredentials.key,
+        clientSecret: String = openCredentials.secret,
+    ): ByteDanceOauthResult<AccessTokenResult>? {
+        val queryMap = mapOf(
+            "code" to code,
+            "grant_type" to "authorization_code",
+            "client_key" to clientKey,
+            "client_secret" to clientSecret)
+        val execute = oauthApi.accessToken(queryMap).execute()
+        return if (execute.isSuccessful) execute.body() else null
+    }
 
     /**
      * 刷新 accessToken

@@ -1,6 +1,7 @@
 package com.sumwhy.bytedance.open.api
 
 import com.sumwhy.bytedance.open.model.resp.LarkOauthResult
+import com.sumwhy.bytedance.open.model.resp.oauth.AccessTokenResult
 import com.sumwhy.bytedance.open.model.resp.oauth.ByteDanceOauthResult
 import com.sumwhy.bytedance.open.model.resp.oauth.RefreshTokenResult
 import retrofit2.Call
@@ -13,6 +14,9 @@ import retrofit2.http.QueryMap
  * @author 何嘉豪
  */
 interface OauthApi {
+
+    @GET("oauth/access_token/")
+    fun accessToken(@QueryMap queryMap: Map<String, String>): Call<ByteDanceOauthResult<AccessTokenResult>>
 
     /**
      * 刷新 accessToken
@@ -37,4 +41,5 @@ interface OauthApi {
      */
     @POST("auth/scope/")
     fun larkOauth(@QueryMap queryMap: Map<String, String>): Call<LarkOauthResult>
+
 }

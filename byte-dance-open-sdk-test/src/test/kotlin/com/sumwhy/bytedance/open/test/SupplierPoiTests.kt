@@ -3,8 +3,7 @@ package com.sumwhy.bytedance.open.test
 import com.sumwhy.bytedance.open.client.PoiSupplierClient
 import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchData
 import com.sumwhy.bytedance.open.model.req.poi.supplier.SupplierMatchReq
-import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
-import com.sumwhy.bytedance.open.model.resp.poi.supplier.SupplierQueryResult
+import com.sumwhy.bytedance.open.model.resp.poi.PoiResp
 import com.sumwhy.bytedance.open.model.resp.poi.supplier.SupplierSyncResult
 import com.sumwhy.bytedance.open.model.universal.poi.HotelServiceFacility
 import com.sumwhy.bytedance.open.model.universal.poi.enumeration.OnlineStatusEnum
@@ -41,13 +40,13 @@ class SupplierPoiTests {
                 .build(),
             "test", "test"
         ).build()
-        val test: ByteDanceResp<SupplierSyncResult>? = poiSupplierClient.syncSupplier("test", build)
+        val test: PoiResp<SupplierSyncResult>? = poiSupplierClient.syncSupplier("test", build)
         log.info("test: {}", test)
     }
 
     @Test
     fun queryPoiSupplier() {
-        val test: ByteDanceResp<SupplierQueryResult>? = poiSupplierClient
+        val test = poiSupplierClient
             .querySupplier("act.2b354eefc57741186fad8a29cefdb806JLOO9E1MMxuO2S58lTvfM9rjECk1", "12435235")
         log.info("test: {}", test)
     }

@@ -14,6 +14,13 @@ class AuthTests {
     lateinit var oauthClient: OauthClient
 
     @Test
+    fun accessToken() {
+        val accessToken =
+            oauthClient.accessToken(code = "tTfIvYdQO9ru5FQi4P1LBhBms1ZOI_oOzDhOEiDsEm7G7bzUapBDWtG05Mu9lhZQscpWhfis5NhfpsWbDhOtiMkvzevr4Y3pvAi7nOkHcyDgYxgn_EK3UJAQv3Y")
+        log.info("accessToken:{}", accessToken)
+    }
+
+    @Test
     fun refreshToken() {
         val refreshToken =
             oauthClient.refreshToken(refreshToken = "rft.575c7fb63f2cbf3c5e45848079052176vffXa2V1Sunnyz34W3MvbI1bfIFl")

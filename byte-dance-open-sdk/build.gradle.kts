@@ -29,7 +29,7 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 }
 
 group = "com.sumwhy"
-version = "1.0.16"
+version = "1.0.17"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
