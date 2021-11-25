@@ -1,11 +1,14 @@
 package com.sumwhy.bytedance.open.api
 
+import com.sumwhy.bytedance.open.client.DataFansClient
 import com.sumwhy.bytedance.open.model.resp.ByteDanceResp
 import com.sumwhy.bytedance.open.model.resp.data.BaseDataResult
+import com.sumwhy.bytedance.open.model.resp.data.fans.FansDataRet
 import com.sumwhy.bytedance.open.model.resp.data.user.*
 import com.sumwhy.bytedance.open.model.resp.data.video.*
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 /**
@@ -81,5 +84,10 @@ interface DataApi {
     @GET("data/external/item/share/")
     fun getItemShare(@QueryMap queryMap: Map<String, String>): Call<ByteDanceResp<BaseDataResult<VideoShare>>>
 
+    /**
+     *
+     */
+    @GET("fans/data/")
+    fun getFansData(@Query("open_id") openId: String, @Query("access_token") accessToken: String): Call<ByteDanceResp<FansDataRet>>
 
 }

@@ -48,8 +48,8 @@ class VideoTests {
     @Test
     fun listVideo() {
         val universalListParam = UniversalListParam.builder(
-            "4fbf142a-104f-41dc-8fc3-6959042e2923",
-            "act.d80bd55f6d3b93e78788bf7c0583e72bUJAIjukO6Bx13HFoKivA9Mp8zrSv", 10
+            "2a535644-9e52-421a-918e-6f4a11d68f9e",
+            "act.e0ff2b686340bcc741b776a6759fa368rEicJYG21NpqnDw6HHvKxUm9eoru", 10
         ).build()
         val listVideo = videoClient.listVideo(universalListParam)
         listVideo?.data?.list?.forEach {
@@ -68,6 +68,7 @@ class VideoTests {
         val listFans = userClient.listFans(universalListParam)
         log.info("listFans:{}", listFans)
     }
+
 
     @Test
     fun walkVideo() {

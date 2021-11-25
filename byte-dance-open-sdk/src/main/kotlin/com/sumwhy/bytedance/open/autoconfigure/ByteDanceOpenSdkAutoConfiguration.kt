@@ -75,4 +75,7 @@ class ByteDanceOpenSdkAutoConfiguration {
     @Bean
     fun enterpriseClient(enterpriseApi: EnterpriseApi) = EnterpriseClient(enterpriseApi)
 
+    @Bean
+    fun fansDataClient(dataApi: DataApi) = DataFansClient(dataApi)
+
 }
