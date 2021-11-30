@@ -12,7 +12,7 @@ data class FansDataRet(
     /**
      * 粉丝数据
      */
-    val fansData: FansData,
+    val fansData: FansData?,
 
     /**
      * 错误码
@@ -29,12 +29,12 @@ data class FansData(
     /**
      * 粉丝活跃天数分布
      */
-    val activeDaysDistributions: List<Any>?,
+    val activeDaysDistributions: List<Distribution>?,
 
     /**
      * 粉丝年龄分布
      */
-    val ageDistributions: List<Any>?,
+    val ageDistributions: List<Distribution>?,
 
     /**
      * 所有粉丝的数量
@@ -44,7 +44,7 @@ data class FansData(
     /**
      * 粉丝设备分布
      */
-    val deviceDistributions: List<Any>?,
+    val deviceDistributions: List<Distribution>?,
 
     /**
      * 粉丝流量贡献
@@ -80,7 +80,7 @@ data class Distribution(
 )
 
 data class FlowContribution(
-    val fansSum: Int,
-    val allSum: Int,
-    val flow: String,
+    val fansSum: Int?,
+    val allSum: Int?,
+    val flow: String?,
 )
