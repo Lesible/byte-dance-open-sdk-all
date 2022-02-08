@@ -55,14 +55,14 @@ class EnterpriseTests {
     fun listLeadsUser() {
         val leadsUserListResult = enterpriseClient.listLeadsUser(LeadsUserListReq
             .builder(ACCESS_TOKEN, OPEN_ID, AppointmentTypeEnum.values().toList(),
-                LocalDateTime.of(2021, 9, 4, 10, 0),
-                LocalDateTime.of(2021, 9, 4, 12, 0), 0, 10).build())
+                LocalDateTime.of(2021, 9, 1, 0, 0),
+                LocalDateTime.of(2021, 9, 5, 0, 0), 0, 10).build())
         log.info("leadsUserListResult: {}", leadsUserListResult)
     }
 
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
-        const val ACCESS_TOKEN = "act.9ccd30d4b98e1d0938c2b9156bb0b74efHuhXSDN6LYgqsJYbRZdHViCpbRA"
+        const val ACCESS_TOKEN = "act.96a28e50d2651433d097ed54e490890ec2yh5MMhHgiM7tTRB6PXvyKUEIde"
         const val OPEN_ID = "0b5ddea1-b6d0-49b0-a273-27b56c66b3b6"
     }
 }

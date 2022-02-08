@@ -7,6 +7,7 @@ import com.sumwhy.bytedance.open.client.VideoClient
 import com.sumwhy.bytedance.open.model.req.UniversalListParam
 import com.sumwhy.bytedance.open.model.req.data.external.UserDataParam
 import com.sumwhy.bytedance.open.model.req.data.external.VideoDataParam
+import com.sumwhy.bytedance.open.model.req.video.VideoDataReq
 import com.sumwhy.bytedance.open.util.ResultWalkUtil
 import org.junit.jupiter.api.Test
 import org.slf4j.Logger
@@ -47,24 +48,21 @@ class VideoTests {
      */
     @Test
     fun listVideo() {
-        val universalListParam = UniversalListParam.builder(
-            "2a535644-9e52-421a-918e-6f4a11d68f9e",
-            "act.e0ff2b686340bcc741b776a6759fa368rEicJYG21NpqnDw6HHvKxUm9eoru", 10
-        ).build()
+        val universalListParam = UniversalListParam.builder(OPEN_ID,
+            ACCESS_TOKEN,
+            10).build()
         val listVideo = videoClient.listVideo(universalListParam)
         listVideo?.data?.list?.forEach {
-            println(it.title)
-            println(it.itemId)
+            println(it)
         }
         log.info("listVideo:{}", listVideo)
     }
 
     @Test
     fun listFans() {
-        val universalListParam = UniversalListParam.builder(
-            "b69bf022-7229-4a1f-9ca2-32ab13720fe5",
-            "act.f6efc8c85dd5b2deabd826e6a5703d6frPgdFNHAQvoiYHfwS2ULzuAjZgdv", 10
-        ).build()
+        val universalListParam = UniversalListParam.builder("b69bf022-7229-4a1f-9ca2-32ab13720fe5",
+            "act.f6efc8c85dd5b2deabd826e6a5703d6frPgdFNHAQvoiYHfwS2ULzuAjZgdv",
+            10).build()
         val listFans = userClient.listFans(universalListParam)
         log.info("listFans:{}", listFans)
     }
@@ -72,19 +70,17 @@ class VideoTests {
 
     @Test
     fun walkVideo() {
-        val initParam = UniversalListParam.builder(
-            "160d7dfc-edc4-4a28-a755-0e4522a75788",
-            "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ", 10
-        ).build()
+        val initParam = UniversalListParam.builder("160d7dfc-edc4-4a28-a755-0e4522a75788",
+            "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ",
+            10).build()
         walkUtil.walkVideoList(initParam, { log.info("{}", it) })
     }
 
     @Test
     fun dataUser() {
-        val dataBaseParam = UserDataParam(
-            5,
-            "160d7dfc-edc4-4a28-a755-0e4522a75788", "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ"
-        )
+        val dataBaseParam = UserDataParam(5,
+            "160d7dfc-edc4-4a28-a755-0e4522a75788",
+            "act.44d028f8eb813b1d11aef758eb931bb7NFB8iwzCH2irpbr89TCttjJuDHhZ")
         println(dataUserClient.getUserComment(dataBaseParam))
         println(dataUserClient.getUserFans(dataBaseParam))
         println(dataUserClient.getUserItem(dataBaseParam))
@@ -96,25 +92,34 @@ class VideoTests {
     @Test
     fun dataVideo() {
         val videoDataParam =
-            VideoDataParam(
-                "@9Vxc0aqXSsM5b2D0dt41Qc783GztNPCFMpxyrQmuLlAQbvf960zdRmYqig357zEBNxaM7PuU+F5bEIfWd7Kb9Q==",
+            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783GztNPCFMpxyrQmuLlAQbvf960zdRmYqig357zEBNxaM7PuU+F5bEIfWd7Kb9Q==",
                 openId = "a7701ce7-fc87-4859-8af0-2f691107bfb2",
-                accessToken = "act.aecdaa4d437806d57ea1b1eda16f0a10WaFe48viEi71n7QBuvRByTdNL0eE"
-            )
+                accessToken = "act.aecdaa4d437806d57ea1b1eda16f0a10WaFe48viEi71n7QBuvRByTdNL0eE")
         val itemBase = dataVideoClient.getItemBase(videoDataParam)
         log.info("itemBase:{}", itemBase)
         val videoDataParamDate =
-            VideoDataParam(
-                "@9Vxc0aqXSsM5b2D0dt41Qc783GztNPCFMpxyrQmuLlAQbvf960zdRmYqig357zEBNxaM7PuU+F5bEIfWd7Kb9Q==",
-                15, "a7701ce7-fc87-4859-8af0-2f691107bfb2",
-                "act.aecdaa4d437806d57ea1b1eda16f0a10WaFe48viEi71n7QBuvRByTdNL0eE"
-            )
+            VideoDataParam("@9Vxc0aqXSsM5b2D0dt41Qc783GztNPCFMpxyrQmuLlAQbvf960zdRmYqig357zEBNxaM7PuU+F5bEIfWd7Kb9Q==",
+                15,
+                "a7701ce7-fc87-4859-8af0-2f691107bfb2",
+                "act.aecdaa4d437806d57ea1b1eda16f0a10WaFe48viEi71n7QBuvRByTdNL0eE")
         val itemPlay = dataVideoClient.getItemPlay(videoDataParamDate)
         log.info("itemPlay:{}", itemPlay)
     }
 
+    @Test
+    fun videoData() {
+        val videoData = videoClient.videoData("5289dfea-8634-4165-a807-28918b0ad2c2",
+            "act.d0ddb39b8eeb46fbc96d420fdfa98b39Mr9O70Z7UFLyr479FRSfrDjn36Mj",
+            VideoDataReq.builder(
+                listOf("@9Vxc0aqXSsM5b2D0dt41Qc791WHvNPCCOZN1oAunJ1QTafn/60zdRmYqig357zEBr6kuNVu4Tt+Hou8LAq9Gfg=="))
+                .build())
+        log.info("videoData:{}", videoData)
+    }
+
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
+        const val OPEN_ID = "e9ef3063-274e-436a-89e9-1c0c99ee0e77"
+        const val ACCESS_TOKEN = "act.9dcc02756497c7bff015a73fdd9b7b88oVDPFOqZ6Ow79ng9gOLHYb4HzFpK"
     }
 
 }

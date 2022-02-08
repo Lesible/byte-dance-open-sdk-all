@@ -15,13 +15,14 @@ class UserInfoTests {
 
     @Test
     fun userInfo() {
-        val userInfo =userClient.userInfo("act.6d0532520b3e386f2a0356b458037beacbJVdTFJZxZb94qX0cu35d83MCnx",
-        "334f2263-a9d8-4c07-bee4-f727a9d7a62f")
-        log.info("refreshToken:{}", userInfo)
+        val userInfo = userClient.userInfo(ACCESS_TOKEN, OPEN_ID)
+        log.info("userInfo:{}", userInfo)
     }
 
 
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
+        const val ACCESS_TOKEN = "act.ebc8d4edc5ac4816302831f63102a412fbhiZVsi7GH4M2kvBsJpixf90dhj"
+        const val OPEN_ID = "6db59c6a-2f1c-4f1a-88b3-dfab71fe420a"
     }
 }

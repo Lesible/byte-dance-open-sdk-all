@@ -3,7 +3,7 @@ plugins {
     id("org.springframework.boot")
     kotlin("kapt")
     kotlin("plugin.spring")
-    id("org.jetbrains.dokka") version "1.5.0"
+    id("org.jetbrains.dokka") version "1.6.10"
     `java-library`
     `maven-publish`
 }
@@ -29,7 +29,7 @@ val javadocJar: TaskProvider<Jar> by tasks.registering(Jar::class) {
 }
 
 group = "com.sumwhy"
-version = "1.0.19"
+version = "1.0.20"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
@@ -42,12 +42,12 @@ publishing {
     }
     repositories {
         maven {
-            val release = uri("http://115.231.104.66:8888/repository/maven-releases/")
-            val snapshot = uri("http://115.231.104.66:8888/repository/maven-snapshots/")
+            val release = uri("https://xm7.cn/repository/maven-releases/")
+            val snapshot = uri("https://xm7.cn/repository/maven-snapshots/")
             url = if (version.toString().endsWith("SNAPSHOT")) snapshot else release
             credentials {
                 username = "admin"
-                password = "qwer1234"
+                password = "\$umwhy123"
             }
         }
     }
@@ -64,7 +64,7 @@ dependencies {
     api("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     api("commons-codec:commons-codec:1.15")
     api("org.apache.commons:commons-lang3:3.12.0")
-    api("org.slf4j:slf4j-api:1.7.32")
+    api("org.slf4j:slf4j-api:1.7.35")
     api("com.squareup.okhttp3:logging-interceptor:3.14.7")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     compileOnly("org.springframework.boot:spring-boot-starter")

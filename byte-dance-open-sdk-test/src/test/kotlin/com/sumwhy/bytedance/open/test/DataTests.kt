@@ -48,10 +48,16 @@ class DataTests {
         log.info("itemBase: {}", itemPlay)
     }
 
+    @Test
+    fun videoShareInfo() {
+        val itemPlay = dataVideoClient.getItemShare(VideoDataParam(ITEM_ID, 7, OPEN_ID, ACCESS_TOKEN))
+        log.info("itemBase: {}", itemPlay)
+    }
+
     companion object {
         val log: Logger = LoggerFactory.getLogger(this::class.java)
-        const val ACCESS_TOKEN = "act.96a28e50d2651433d097ed54e490890ec2yh5MMhHgiM7tTRB6PXvyKUEIde"
-        const val OPEN_ID = "0b5ddea1-b6d0-49b0-a273-27b56c66b3b6"
-        const val ITEM_ID = "@9Vxc0aqXSsM5b2D0dt41Qc783WfgO/+EM5J0qA+iL1AUa/T960zdRmYqig357zEBAB/FASalehnNv8/PvrcCtQ=="
+        const val ACCESS_TOKEN = "act.cbeb1cf1e50013ae6b296ccc49dcf93eqDMQd1AuOu68C168aVlZD0G2bzIo"
+        const val OPEN_ID = "851edb7f-dafb-4666-b03a-44c829dc4798"
+        const val ITEM_ID = "@9Vxc0aqXSsM5b2D0dt41Qc791WHvO/2BOJZyqg+nKFAXbvb060zdRmYqig357zEBABwrQc8f5ntJ+zrt3Hb5Rw=="
     }
 }

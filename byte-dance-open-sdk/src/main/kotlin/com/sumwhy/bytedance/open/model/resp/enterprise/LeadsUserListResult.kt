@@ -108,6 +108,16 @@ data class UserInfo(
     val nickName: String? = null,
 
     /**
+     * 直播间 id
+     */
+    val roomId: String? = null,
+
+    /**
+     * 视频 itemId
+     */
+    val itemId: String? = null,
+
+    /**
      * 姓名
      */
     val name: String? = null,
